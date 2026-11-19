@@ -83,7 +83,7 @@
           keyframes: {
             floatGift: {
               '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-              '50%': { transform: 'translateY(-12px) rotate(1.2deg)' },
+              '50%': { transform: 'translateY(-12px) rotate(1.5deg)' },
             },
             pulseGlow: {
               '0%, 100%': { transform: 'scale(1)', opacity: '0.6' },
@@ -139,9 +139,9 @@
       top: -14px;
       left: 50%;
       transform: translateX(-50%) rotate(-1deg);
-      width: 100px;
+      width: 110px;
       height: 28px;
-      background: linear-gradient(135deg, rgba(188, 159, 239, 0.5), rgba(225, 196, 247, 0.55));
+      background: linear-gradient(135deg, rgba(188, 159, 239, 0.6), rgba(225, 196, 247, 0.65));
       backdrop-filter: blur(4px);
       clip-path: polygon(4% 0%, 96% 0%, 100% 50%, 96% 100%, 4% 100%, 0% 50%);
       box-shadow: 0 2px 6px rgba(110, 60, 192, 0.1);
@@ -223,153 +223,182 @@
       transform: rotate(-3deg);
     }
 
+    /* Animación de apertura de la portada */
+    .step-fade-out {
+      opacity: 0;
+      transform: scale(0.97) translateY(-14px);
+      pointer-events: none;
+      transition: all 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .step-revealed {
+      opacity: 1 !important;
+      transform: translateY(0) scale(1) !important;
+      pointer-events: auto !important;
+      transition: opacity 0.75s ease-out, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
     /* Ocultar barra de desplazamiento */
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
-<body class="min-h-screen bg-lavender-50 bg-luxury-pattern text-softcharcoal-800 antialiased selection:bg-lavender-500 selection:text-white pb-20">
+<body class="min-h-screen bg-lavender-50 bg-luxury-pattern text-softcharcoal-800 antialiased selection:bg-lavender-500 selection:text-white pb-24">
 <!-- ====================================================================
-       PANTALLA DE BIENVENIDA / APERTURA DE REGALO (Modal de Impacto Emotivo)
-       ==================================================================== -->
-<div class="fixed inset-0 z-50 flex flex-col items-center justify-center p-6 bg-gradient-to-b from-nightviolet-950 via-nightviolet-900 to-[#181324] text-white transition-all duration-800 ease-out" id="welcome-screen">
-<!-- Luces y destellos en el fondo lavanda y lila -->
-<div class="absolute inset-0 overflow-hidden pointer-events-none">
-<div class="absolute -top-32 -left-32 w-96 h-96 bg-lavender-400/25 rounded-full blur-3xl animate-pulse-glow"></div>
-<div class="absolute -bottom-32 -right-32 w-96 h-96 bg-pastellilac-400/25 rounded-full blur-3xl animate-pulse-glow" style="animation-delay: 1.4s;"></div>
-<div class="absolute top-1/3 right-10 w-48 h-48 bg-pasteldorado-300/15 rounded-full blur-2xl animate-sparkle"></div>
+     PASO 1: PANTALLA INICIAL (PORTADA DE BIENVENIDA INTERACTIVA)
+     Full viewport, atmósfera crepuscular lavanda/nocturna, caja de regalo 3D
+     ==================================================================== -->
+<section class="relative z-40 flex flex-col items-center justify-center min-h-[92vh] sm:min-h-screen px-4 py-8 max-w-4xl mx-auto transition-all duration-700 ease-out" id="step1-welcome">
+<!-- Tarjeta Hero estilo Sobre de Gala / Portal de Bienvenida -->
+<div class="relative w-full max-w-2xl overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-nightviolet-950 via-[#271b3e] to-nightviolet-900 p-8 sm:p-12 text-white shadow-2xl border border-lavender-400/30 text-center">
+<!-- Luces y destellos de fondo -->
+<div class="absolute -top-32 -left-32 w-80 h-80 bg-lavender-500/25 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-32 -right-32 w-80 h-80 bg-blushpastel-400/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-pastellilac-500/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col items-center">
+<!-- Tag / Distintivo superior -->
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md text-lavender-200 text-xs sm:text-sm font-semibold tracking-wider uppercase mb-5 border border-lavender-300/30 shadow-inner">
+<span>✨</span>
+<span>¡Tenés una sorpresa especial esperándote!</span>
+<span>✨</span>
 </div>
-<div class="relative z-10 max-w-sm w-full text-center flex flex-col items-center">
-<!-- Badge superior -->
-<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md text-lavender-200 text-xs tracking-widest uppercase font-semibold mb-5 border border-lavender-300/30 shadow-sm">
-<span class="text-sm">✨</span>
-<span>Sorpresa de Cumpleaños</span>
-<span class="text-sm">✨</span>
-</div>
-<!-- Título de impacto -->
-<h1 class="font-serif text-5xl sm:text-6xl font-bold tracking-tight text-white mb-2 leading-none drop-shadow-lg">
+<!-- Título de Bienvenida -->
+<h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white mb-3 leading-tight drop-shadow-md">
         ¡Feliz Cumple, Vir!
       </h1>
-<p class="text-lavender-100/90 text-sm sm:text-base font-light mb-8 max-w-xs leading-relaxed font-sans">
-        Un rincón interactivo preparado con todo el amor de <span class="font-semibold text-lavender-300">Germán</span> y <span class="font-semibold text-blushpastel-300">Cami</span> para vos.
+<p class="font-hand text-2xl sm:text-3xl text-lavender-200 mb-8 max-w-md mx-auto leading-relaxed">
+        De Germán &amp; Cami con todo nuestro amor infinito 💜
       </p>
-<!-- Caja de regalo tridimensional interactiva en tonos lavanda y lila pastel -->
-<button aria-label="Abrir regalo de cumpleaños" class="group relative flex flex-col items-center focus:outline-none transition-all duration-300 transform active:scale-95 hover:scale-105 cursor-pointer" id="btn-open-gift" type="button">
-<!-- Halo luminoso pulsante de fondo -->
-<div class="absolute -inset-6 rounded-3xl bg-gradient-to-r from-lavender-500/35 via-pastellilac-400/40 to-pasteldorado-300/25 blur-2xl opacity-80 group-hover:opacity-100 transition duration-500 animate-pulse-glow"></div>
-<!-- Caja de regalo estilizada con lazos y relieve -->
-<div class="relative w-40 h-40 sm:w-44 sm:h-44 rounded-3xl bg-gradient-to-br from-lavender-400 via-pastellilac-400 to-lavender-500 p-1 shadow-2xl flex items-center justify-center border border-white/35 animate-float-gift">
-<!-- Cinta dorada pastel suave vertical & horizontal -->
+<!-- CAJA DE REGALO INTERACTIVA 3D ANIMADA -->
+<div aria-label="Abrir regalo de cumpleaños" class="group relative cursor-pointer my-2 transform transition-all duration-300 hover:scale-105 active:scale-95 focus:outline-none" id="hero-gift-box" role="button" tabindex="0">
+<!-- Glow pulsante detrás del regalo -->
+<div class="absolute -inset-3 bg-gradient-to-r from-lavender-500 via-blushpastel-400 to-pasteldorado-300 rounded-3xl blur-xl opacity-60 group-hover:opacity-90 animate-pulse-glow"></div>
+<!-- Caja del regalo -->
+<div class="relative w-36 h-36 sm:w-44 sm:h-44 rounded-3xl bg-gradient-to-br from-lavender-400 via-pastellilac-400 to-lavender-600 p-1.5 shadow-2xl flex items-center justify-center border-2 border-white/50 animate-float-gift">
+<!-- Cintas doradas cruzadas -->
 <div class="absolute inset-y-0 w-8 bg-gradient-to-r from-pasteldorado-200 via-pasteldorado-300 to-pasteldorado-200 shadow-md opacity-95"></div>
 <div class="absolute inset-x-0 h-8 bg-gradient-to-b from-pasteldorado-200 via-pasteldorado-300 to-pasteldorado-200 shadow-md opacity-95"></div>
 <!-- Moño superior volumétrico -->
-<div class="absolute -top-6 flex items-center justify-center">
-<div class="w-10 h-10 rounded-full bg-gradient-to-tr from-pasteldorado-300 to-pasteldorado-200 border-2 border-white/60 shadow-xl transform -rotate-15"></div>
-<div class="w-10 h-10 rounded-full bg-gradient-to-tl from-pasteldorado-300 to-pasteldorado-200 border-2 border-white/60 shadow-xl transform rotate-15 -ml-3"></div>
+<div class="absolute -top-5 flex items-center justify-center">
+<div class="w-10 h-10 rounded-full bg-pasteldorado-300 border border-white/70 shadow-lg transform -rotate-20 ring-2 ring-pasteldorado-400/40"></div>
+<div class="w-10 h-10 rounded-full bg-pasteldorado-300 border border-white/70 shadow-lg transform rotate-20 -ml-4 ring-2 ring-pasteldorado-400/40"></div>
 <div class="absolute w-5 h-5 rounded-full bg-pasteldorado-400 border border-white/80 shadow-md"></div>
 </div>
-<!-- Ícono central pulsante -->
-<div class="relative z-10 flex flex-col items-center justify-center">
-<span class="text-4xl filter drop-shadow-md transform transition-transform group-hover:scale-125 duration-300">💜</span>
+<!-- Corazón central brillante -->
+<div class="relative z-10 w-16 h-16 rounded-full bg-white/25 backdrop-blur-md flex items-center justify-center border border-white/40 shadow-inner group-hover:scale-110 transition-transform">
+<span class="text-4xl filter drop-shadow group-hover:animate-bounce">💜</span>
 </div>
 </div>
-<!-- Botón de llamado a la acción brillante lila/lavanda -->
-<div class="mt-7 flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-gradient-to-r from-lavender-600 via-pastellilac-500 to-lavender-500 text-white font-semibold text-sm shadow-xl shadow-lavender-900/40 group-hover:shadow-lavender-500/50 transition-all duration-300 border border-white/25">
-<span>Tocá para descubrir tu regalo</span>
-<svg class="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
-</svg>
 </div>
+<!-- Mensaje guiado / llamado a la acción -->
+<p class="text-lavender-200/90 text-sm sm:text-base font-light mt-6 max-w-sm">
+        Preparamos un rincón lleno de audios, recuerdos, cartitas y vales de regalo exclusivos para vos.
+      </p>
+<!-- BOTÓN PRINCIPAL DESTACADO DE APERTURA -->
+<button class="mt-6 px-8 py-3.5 rounded-full bg-gradient-to-r from-lavender-500 via-pastellilac-500 to-pasteldorado-400 hover:from-lavender-600 hover:to-pasteldorado-500 text-white font-bold text-base sm:text-lg shadow-xl hover:shadow-lavender-500/40 border border-white/40 transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer flex items-center gap-3" id="btn-open-gift-main" type="button">
+<span>🎁</span>
+<span>¡Tocá para abrir tu regalo!</span>
+<span>✨</span>
 </button>
-<span class="mt-4 text-xs text-lavender-200/80 font-hand text-xl tracking-wide">
-        Hecho a mano con todo nuestro corazón 💜
+<span class="text-xs text-lavender-300/70 mt-3 font-medium tracking-wide">
+        (Tocá la caja o el botón para descubrir la sorpresa)
       </span>
 </div>
 </div>
+</section>
 <!-- ====================================================================
-       CONTENEDOR PRINCIPAL (Mobile-first, con expansión responsive elegante en Desktop)
-       ==================================================================== -->
-<main class="max-w-md md:max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto px-4 sm:px-6 md:px-8 pt-4 sm:pt-6 md:pt-8 opacity-0 transition-opacity duration-800 ease-out" id="main-content">
+     PASO 2: PANTALLA PRINCIPAL REVELADA (CONTENIDO COMPLETO)
+     Inicialmente oculto (display: none / opacidad 0) y revelado con transición
+     ==================================================================== -->
+<main class="hidden opacity-0 translate-y-6 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 transition-all duration-700 ease-out" id="step2-card-content">
+<!-- BOTÓN FLOTANTE DISCRETO PARA REABRIR O VOLVER A LA PORTADA -->
+<aside class="flex justify-end mb-3">
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/80 hover:bg-white text-lavender-700 text-xs font-semibold border border-lavender-200 shadow-xs transition-all active:scale-95 cursor-pointer" id="btn-replay-welcome" type="button">
+<span>🎁</span>
+<span>Volver a ver la sorpresa</span>
+</button>
+</aside>
 <!-- BARRA SUPERIOR DE BIENVENIDA & CELEBRACIÓN -->
-<header class="flex items-center justify-between py-3 md:py-4 mb-5 md:mb-8 border border-lavender-200/80 bg-white/80 backdrop-blur-md px-3 md:px-6 rounded-2xl shadow-xs">
-<div class="flex items-center gap-2.5 md:gap-3.5">
-<span class="w-9 h-9 md:w-11 md:h-11 rounded-full bg-lavender-100 flex items-center justify-center text-lg md:text-xl shadow-inner">
-          🌸
-        </span>
+<header class="flex items-center justify-between py-3 px-4 mb-6 border border-lavender-200/90 bg-white/85 backdrop-blur-md rounded-2xl shadow-xs">
+<div class="flex items-center gap-3">
+<span class="w-10 h-10 rounded-full bg-gradient-to-tr from-lavender-200 to-pastellilac-100 flex items-center justify-center text-xl shadow-inner border border-lavender-300/40">
+        🌸
+      </span>
 <div>
-<span class="font-serif font-bold text-lg md:text-2xl text-nightviolet-800 block leading-tight" id="header-title">Para Vir</span>
-<span class="text-[11px] md:text-xs text-softcharcoal-700/80 font-medium">De Germán &amp; Cami 💜</span>
+<span class="font-serif font-bold text-lg md:text-xl text-nightviolet-800 block leading-tight" id="header-title">Para Vir</span>
+<span class="text-xs text-softcharcoal-700/80 font-medium">De Germán &amp; Cami 💜</span>
 </div>
 </div>
 <!-- Botón de festejo / Lanza confeti -->
-<button aria-label="Celebrar con confeti" class="flex items-center gap-1.5 px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-lavender-100 hover:bg-lavender-200 text-lavender-700 text-xs md:text-sm font-semibold shadow-xs transition-all active:scale-95 cursor-pointer border border-lavender-200" id="btn-confetti-header" type="button">
+<button aria-label="Celebrar con confeti" class="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-lavender-100 to-pastellilac-100 hover:from-lavender-200 hover:to-pastellilac-200 text-lavender-700 text-xs md:text-sm font-semibold shadow-xs transition-all active:scale-95 cursor-pointer border border-lavender-300/60" id="btn-confetti-header" type="button">
 <span>🎉</span>
-<span>¡Celebrar!</span>
+<span>¡Celebrar con Confeti!</span>
 </button>
 </header>
 <!-- ====================================================================
-         1. HERO / PORTADA FOTOGRÁFICA (Estilo Revista / Polaroid de Lujo)
-         ==================================================================== -->
-<section class="mb-9 md:mb-12">
-<div class="relative bg-white rounded-3xl p-4 sm:p-6 md:p-8 card-luxury border border-lavender-200/90 md:flex md:items-center md:gap-8 lg:gap-10">
+       1. HERO / PORTADA FOTOGRÁFICA (Estilo Editorial Polaroid)
+       ==================================================================== -->
+<section class="mb-10">
+<div class="relative bg-white rounded-3xl p-5 sm:p-8 card-luxury border border-lavender-200/90 mx-auto">
 <!-- Cinta decorativa Washi Tape lavanda -->
 <div class="washi-tape-luxury"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
 <!-- Marco fotográfico elegante -->
-<div class="relative w-full md:w-5/12 lg:w-1/2 aspect-[4/5] rounded-2xl overflow-hidden bg-lavender-100/70 shadow-inner group flex-shrink-0">
-<img alt="Foto especial de cumpleaños para Vir" class="w-full h-full object-cover object-[center_20%] transition-transform duration-700 group-hover:scale-105" id="img-portada" onerror="handleImageFallback(this, 'Vir', '✨ Foto de Portada Especial ✨')" src="assets/portada.jpg"/>
+<div class="lg:col-span-7 relative w-full aspect-[4/3] sm:aspect-[16/10] rounded-2xl overflow-hidden bg-lavender-100/70 shadow-inner group">
+<img alt="Foto especial de cumpleaños para Vir" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" id="img-portada" onerror="handleImageFallback(this, 'Vir', '✨ Foto de Portada Especial ✨')" src="assets/portada.jpg"/>
 <!-- Degradado de lectura en la parte inferior en violeta suave -->
-<div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-nightviolet-950/75 via-nightviolet-950/20 to-transparent pointer-events-none"></div>
-<div class="absolute bottom-3.5 left-3.5 right-3.5 text-white pointer-events-none flex items-center justify-between">
-<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/25 backdrop-blur-md text-[11px] md:text-xs font-medium tracking-wide border border-white/20">
+<div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-nightviolet-950/75 via-nightviolet-950/20 to-transparent pointer-events-none"></div>
+<div class="absolute bottom-3.5 left-3.5 right-3.5 sm:bottom-4 sm:left-4 sm:right-4 text-white pointer-events-none flex items-center justify-between">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/25 backdrop-blur-md text-xs font-medium tracking-wide border border-white/25">
 <span>✨</span>
 <span>El amor de nuestras vidas</span>
 </span>
-<span class="text-xs md:text-sm text-lavender-200 font-hand text-lg md:text-xl">Hoy y siempre</span>
+<span class="text-xs sm:text-sm text-lavender-200 font-hand text-xl">Hoy y siempre 💜</span>
 </div>
 </div>
-<!-- Dedicatoria editorial al pie de la foto -->
-<div class="pt-5 md:pt-0 md:flex-1 text-center md:text-left flex flex-col justify-center">
-<p class="text-[11px] md:text-sm uppercase tracking-widest text-lavender-600 font-bold mb-2 flex items-center justify-center md:justify-start gap-1.5" id="hero-date">
+<!-- Dedicatoria editorial lateral -->
+<div class="lg:col-span-5 flex flex-col justify-center text-center lg:text-left px-2 sm:px-4">
+<p class="text-[11px] sm:text-xs uppercase tracking-widest text-lavender-600 font-bold mb-2 flex items-center justify-center lg:justify-start gap-2" id="hero-date">
 <span>✧</span>
-<span>Noviembre Especial</span>
+<span>Noviembre Especial ✨</span>
 <span>✧</span>
 </p>
 <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-nightviolet-800 leading-tight" id="hero-headline">
             ¡Muy Feliz Cumpleaños, Vir!
           </h2>
-<p class="font-hand text-2xl md:text-3xl text-lavender-600 mt-2.5 md:mt-4 leading-relaxed" id="hero-subtext">
-            "Gracias por iluminar nuestros días con tu amor y tu sonrisa."
+<p class="font-hand text-2xl sm:text-3xl text-lavender-600 mt-3 leading-relaxed" id="hero-subtext">
+            "Gracias por iluminar nuestros días con tu amor y tu hermosa sonrisa."
           </p>
-<div class="hidden md:flex items-center gap-2 mt-6 text-xs text-softcharcoal-700/80 bg-lavender-50/80 px-4 py-2.5 rounded-xl border border-lavender-200/60 w-fit">
-<span>💌</span>
-<span>Una sorpresa preparada con todo el amor de Germán y Cami</span>
+<div class="mt-4 pt-4 border-t border-lavender-100 flex items-center justify-center lg:justify-start gap-3">
+<span class="px-3 py-1 rounded-full bg-lavender-100 text-lavender-700 text-xs font-semibold">Con amor infinito</span>
+<span class="text-sm font-hand text-2xl text-softcharcoal-700">Germán &amp; Cami</span>
+</div>
 </div>
 </div>
 </div>
 </section>
 <!-- ====================================================================
-         2. MENSAJES DE VOZ INTERACTIVOS DE GERMÁN Y CAMI
-         ==================================================================== -->
-<section class="mb-10 md:mb-14">
-<div class="flex items-center justify-between mb-2 md:mb-3">
-<div class="flex items-center gap-2 md:gap-3">
+       2. MENSAJES DE VOZ INTERACTIVOS DE GERMÁN Y CAMI (2 Columnas en Desktop)
+       ==================================================================== -->
+<section class="mb-12">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2.5">
 <span class="flex h-3 w-3 relative">
 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-lavender-400 opacity-75"></span>
 <span class="relative inline-flex rounded-full h-3 w-3 bg-lavender-500"></span>
 </span>
-<h3 class="font-serif text-2xl md:text-3xl font-bold text-nightviolet-800">Mensajes de Voz 🎙️</h3>
+<h3 class="font-serif text-2xl sm:text-3xl font-bold text-nightviolet-800">Mensajes de Voz 🎙️</h3>
 </div>
-<span class="text-[11px] md:text-xs font-semibold text-lavender-700 bg-lavender-100 px-3 py-1 rounded-full border border-lavender-200">
-          Subí el volumen
-        </span>
+<span class="text-xs font-semibold text-lavender-700 bg-lavender-100 px-3 py-1 rounded-full border border-lavender-200">
+        Subí el volumen 🔊
+      </span>
 </div>
-<p class="text-xs md:text-sm text-softcharcoal-700/85 mb-4 md:mb-6">
-        Tocá reproducir para escuchar nuestras palabras directas al corazón:
-      </p>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+<p class="text-xs sm:text-sm text-softcharcoal-700/85 mb-5">
+      Tocá reproducir para escuchar nuestras palabras directas al corazón:
+    </p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 <!-- TARJETA 1: AUDIO DE GERMÁN (Tonos Violeta Lavanda) -->
-<div class="bg-white rounded-2xl p-4.5 card-luxury border border-lavender-200/90 transition-all duration-300" id="player-card-german">
-<div class="flex items-center gap-3.5 mb-3.5">
+<div class="bg-white rounded-2xl p-5 card-luxury border border-lavender-200/90 transition-all duration-300" id="player-card-german">
+<div class="flex items-center gap-3.5 mb-4">
 <!-- Avatar Germán -->
 <div class="relative w-14 h-14 rounded-full overflow-hidden border-2 border-lavender-400 shadow-sm flex-shrink-0 bg-lavender-200 ring-2 ring-lavender-200/60">
 <img alt="Germán" class="w-full h-full object-cover" id="avatar-german" onerror="handleAvatarFallback(this, 'G', '#8B5CF6')" src="assets/avatar-german.jpg"/>
@@ -378,15 +407,15 @@
 <div class="flex items-center justify-between">
 <h4 class="font-serif font-bold text-lg text-nightviolet-800 leading-tight">Mensaje de Germán</h4>
 <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-lavender-100 text-lavender-700 tracking-wide uppercase border border-lavender-200/80">
-                  Para mi amor 💜
-                </span>
+                Para mi amor 💜
+              </span>
 </div>
 <p class="text-xs text-softcharcoal-700/70 truncate mt-0.5">Tengo algo muy especial que decirte...</p>
 </div>
 </div>
 <!-- Reproductor de Audio Germán -->
-<div class="bg-lavender-50/80 rounded-xl p-3 border border-lavender-200/70 shadow-inner">
-<div class="flex items-center gap-3">
+<div class="bg-lavender-50/80 rounded-xl p-3.5 border border-lavender-200/70 shadow-inner">
+<div class="flex items-center gap-3.5">
 <!-- Botón Play/Pause -->
 <button aria-label="Reproducir mensaje de Germán" class="w-12 h-12 rounded-full bg-gradient-to-tr from-lavender-700 via-lavender-600 to-lavender-500 text-white flex items-center justify-center shadow-md active:scale-95 transition-transform flex-shrink-0 cursor-pointer hover:shadow-lavender-500/40" id="btn-play-german" type="button">
 <svg class="w-5 h-5 ml-0.5 fill-current" id="icon-play-german" viewbox="0 0 24 24">
@@ -400,7 +429,7 @@
 <div class="flex-1 min-w-0">
 <div class="flex items-center justify-between mb-1.5 text-[11px] font-mono text-softcharcoal-700">
 <span id="time-current-german">0:00</span>
-<!-- Ondas sonoras (10 barras reactivas lila/lavanda) -->
+<!-- Ondas sonoras -->
 <div class="wave-container flex items-center gap-[3px] h-6 px-1" id="waves-german">
 <span class="wave-bar w-[3px] bg-lavender-500 rounded-full h-1.5"></span>
 <span class="wave-bar w-[3px] bg-lavender-600 rounded-full h-2.5"></span>
@@ -413,7 +442,7 @@
 <span class="wave-bar w-[3px] bg-lavender-500 rounded-full h-1.5"></span>
 <span class="wave-bar w-[3px] bg-lavender-600 rounded-full h-2"></span>
 </div>
-<span id="time-total-german">--:--</span>
+<span id="time-total-german">0:15</span>
 </div>
 <!-- Barra de progreso táctil -->
 <div class="relative w-full h-2 bg-lavender-200/80 rounded-full cursor-pointer overflow-hidden touch-none" id="progress-container-german">
@@ -421,31 +450,35 @@
 </div>
 </div>
 </div>
-<!-- Fallback demostración interactiva -->
-<div class="hidden mt-2 pt-2 border-t border-lavender-200/60 text-[11px] text-lavender-700 flex items-center justify-between" id="fallback-notice-german">
-<span>🎵 Modo demostración activo</span>
+<div class="mt-2.5 pt-2 border-t border-lavender-200/60 text-[11px] text-lavender-700 flex items-center justify-between" id="fallback-notice-german">
+<span>🎵 Audio listo para reproducir</span>
 <span class="text-[10px] text-softcharcoal-700/60 font-mono">audio-german.mp3</span>
 </div>
 </div>
-<!-- Desplegar transcripción del audio -->
-<div class="mt-3">
-<button class="w-full flex items-center justify-between py-2 px-3 rounded-xl text-xs font-semibold text-nightviolet-800 bg-lavender-100/75 hover:bg-lavender-200/80 transition-colors border border-lavender-200/50" id="btn-toggle-carta-german" type="button">
+<!-- Desplegar cartita escrita -->
+<div class="mt-3.5">
+<button class="w-full flex items-center justify-between py-2 px-3.5 rounded-xl text-xs font-semibold text-nightviolet-800 bg-lavender-100/75 hover:bg-lavender-200/80 transition-colors border border-lavender-200/60 cursor-pointer" id="btn-toggle-carta-german" type="button">
 <span class="flex items-center gap-1.5">
-<span>📝</span>
-<span>Transcripción del audio de Germán</span>
+<span>💌</span>
+<span>Leer dedicatoria escrita de Germán</span>
 </span>
 <svg class="w-4 h-4 text-softcharcoal-700 transform transition-transform duration-200" fill="none" id="chevron-carta-german" stroke="currentColor" viewbox="0 0 24 24">
 <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
 </svg>
 </button>
-<div class="hidden mt-2 p-3.5 rounded-xl bg-lavender-50/80 border border-lavender-200/80 text-xs sm:text-sm leading-relaxed text-softcharcoal-800 font-sans shadow-xs space-y-1.5" id="carta-german-content">
-<!-- Contenido dinámico con transcripción del audio -->
-</div>
+<div class="hidden mt-2 p-4 rounded-xl bg-lavender-50/70 border border-lavender-200/80 text-xs sm:text-sm leading-relaxed text-softcharcoal-800 font-sans whitespace-pre-line shadow-xs" id="carta-german-content">Vir de mi vida,
+
+Hoy quiero tomarme un ratito para decirte lo importante que sos para mí. Gracias por cada mate compartido, por cada charla interminable, por apoyarme en cada paso y por ser esa compañera de vida tan hermosa, divertida, fuerte y luminosa.
+
+Verte sonreír es mi momento favorito de todos los días. Te merecés todo lo más lindo de este mundo hoy y siempre.
+
+¡Feliz cumple, mi amor! Te amo con todo mi corazón.
+— Germán</div>
 </div>
 </div>
 <!-- TARJETA 2: AUDIO DE CAMI (Tonos Blush Pastel / Lavanda Rosado) -->
-<div class="bg-white rounded-2xl p-4.5 card-luxury border border-lavender-200/90 transition-all duration-300" id="player-card-cami">
-<div class="flex items-center gap-3.5 mb-3.5">
+<div class="bg-white rounded-2xl p-5 card-luxury border border-lavender-200/90 transition-all duration-300" id="player-card-cami">
+<div class="flex items-center gap-3.5 mb-4">
 <!-- Avatar Cami -->
 <div class="relative w-14 h-14 rounded-full overflow-hidden border-2 border-blushpastel-300 shadow-sm flex-shrink-0 bg-blushpastel-100 ring-2 ring-blushpastel-200/60">
 <img alt="Cami" class="w-full h-full object-cover" id="avatar-cami" onerror="handleAvatarFallback(this, 'C', '#D66BA7')" src="assets/avatar-cami.jpg"/>
@@ -454,15 +487,15 @@
 <div class="flex items-center justify-between">
 <h4 class="font-serif font-bold text-lg text-nightviolet-800 leading-tight">Mensaje de Cami</h4>
 <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blushpastel-100 text-blushpastel-500 tracking-wide uppercase border border-blushpastel-200">
-                  De tu hija 🌸
-                </span>
+                De tu hija 🌸
+              </span>
 </div>
 <p class="text-xs text-softcharcoal-700/70 truncate mt-0.5">Un saludo lleno de abrazos y mimos...</p>
 </div>
 </div>
 <!-- Reproductor de Audio Cami -->
-<div class="bg-blushpastel-50/80 rounded-xl p-3 border border-blushpastel-200/70 shadow-inner">
-<div class="flex items-center gap-3">
+<div class="bg-blushpastel-50/80 rounded-xl p-3.5 border border-blushpastel-200/70 shadow-inner">
+<div class="flex items-center gap-3.5">
 <!-- Botón Play/Pause -->
 <button aria-label="Reproducir mensaje de Cami" class="w-12 h-12 rounded-full bg-gradient-to-tr from-blushpastel-500 via-blushpastel-400 to-pastellilac-400 text-white flex items-center justify-center shadow-md active:scale-95 transition-transform flex-shrink-0 cursor-pointer hover:shadow-blushpastel-400/40" id="btn-play-cami" type="button">
 <svg class="w-5 h-5 ml-0.5 fill-current" id="icon-play-cami" viewbox="0 0 24 24">
@@ -476,7 +509,7 @@
 <div class="flex-1 min-w-0">
 <div class="flex items-center justify-between mb-1.5 text-[11px] font-mono text-softcharcoal-700">
 <span id="time-current-cami">0:00</span>
-<!-- Ondas sonoras (10 barras rosa pastel / lila) -->
+<!-- Ondas sonoras -->
 <div class="wave-container flex items-center gap-[3px] h-6 px-1" id="waves-cami">
 <span class="wave-bar w-[3px] bg-blushpastel-400 rounded-full h-2"></span>
 <span class="wave-bar w-[3px] bg-pastellilac-400 rounded-full h-1.5"></span>
@@ -489,7 +522,7 @@
 <span class="wave-bar w-[3px] bg-blushpastel-400 rounded-full h-2"></span>
 <span class="wave-bar w-[3px] bg-pastellilac-400 rounded-full h-1.5"></span>
 </div>
-<span id="time-total-cami">--:--</span>
+<span id="time-total-cami">0:15</span>
 </div>
 <!-- Barra de progreso táctil -->
 <div class="relative w-full h-2 bg-blushpastel-200 rounded-full cursor-pointer overflow-hidden touch-none" id="progress-container-cami">
@@ -497,820 +530,865 @@
 </div>
 </div>
 </div>
-<!-- Fallback demostración interactiva -->
-<div class="hidden mt-2 pt-2 border-t border-blushpastel-200/60 text-[11px] text-blushpastel-500 flex items-center justify-between" id="fallback-notice-cami">
-<span>🎵 Modo demostración activo</span>
+<div class="mt-2.5 pt-2 border-t border-blushpastel-200/60 text-[11px] text-blushpastel-500 flex items-center justify-between" id="fallback-notice-cami">
+<span>🎵 Audio listo para reproducir</span>
 <span class="text-[10px] text-softcharcoal-700/60 font-mono">audio-cami.mp3</span>
 </div>
 </div>
-<!-- Desplegar transcripción del audio -->
-<div class="mt-3">
-<button class="w-full flex items-center justify-between py-2 px-3 rounded-xl text-xs font-semibold text-nightviolet-800 bg-lavender-100/75 hover:bg-lavender-200/80 transition-colors border border-lavender-200/50" id="btn-toggle-carta-cami" type="button">
+<!-- Desplegar cartita escrita -->
+<div class="mt-3.5">
+<button class="w-full flex items-center justify-between py-2 px-3.5 rounded-xl text-xs font-semibold text-nightviolet-800 bg-lavender-100/75 hover:bg-lavender-200/80 transition-colors border border-lavender-200/60 cursor-pointer" id="btn-toggle-carta-cami" type="button">
 <span class="flex items-center gap-1.5">
-<span>📝</span>
-<span>Transcripción del audio de Cami</span>
+<span>💌</span>
+<span>Leer dedicatoria escrita de Cami</span>
 </span>
 <svg class="w-4 h-4 text-softcharcoal-700 transform transition-transform duration-200" fill="none" id="chevron-carta-cami" stroke="currentColor" viewbox="0 0 24 24">
 <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
 </svg>
 </button>
-<div class="hidden mt-2 p-3.5 rounded-xl bg-lavender-50/80 border border-lavender-200/80 text-xs sm:text-sm leading-relaxed text-softcharcoal-800 font-sans shadow-xs space-y-1.5" id="carta-cami-content">
-<!-- Contenido dinámico con transcripción del audio -->
-</div>
+<div class="hidden mt-2 p-4 rounded-xl bg-lavender-50/70 border border-lavender-200/80 text-xs sm:text-sm leading-relaxed text-softcharcoal-800 font-sans whitespace-pre-line shadow-xs" id="carta-cami-content">¡Mami hermosa! 💜
+
+¡Muy muy feliz cumpleaños! Gracias por cuidarme tanto, por tus mimos infinitos, por enseñarme tantas cosas lindas y por ser la mejor mamá del universo entero.
+
+Te amo de acá hasta las estrellas y el infinito. ¡Hoy te vamos a consentir un montón como te merecés!
+
+— Cami 🌸</div>
 </div>
 </div>
 </div>
 </section>
 <!-- ====================================================================
-         3. GALERÍA DE RECUERDOS (Polaroid Interactiva con Lightbox & Zoom)
-         ==================================================================== -->
-<section class="mb-10 md:mb-14">
-<div class="flex items-center justify-between mb-3.5 md:mb-5">
+       3. GALERÍA DE RECUERDOS (4 Columnas en Desktop)
+       ==================================================================== -->
+<section class="mb-12">
+<div class="flex items-center justify-between mb-4">
 <div>
-<h3 class="font-serif text-2xl md:text-3xl font-bold text-nightviolet-800">Nuestros Recuerdos 📸</h3>
-<p class="text-xs md:text-sm text-softcharcoal-700/85">Tocá cualquier foto para ampliarla</p>
+<h3 class="font-serif text-2xl sm:text-3xl font-bold text-nightviolet-800">Nuestros Recuerdos 📸</h3>
+<p class="text-xs sm:text-sm text-softcharcoal-700/85">Tocá cualquier foto para verla ampliada</p>
 </div>
-<span class="text-xs md:text-sm font-hand text-xl md:text-2xl text-lavender-600 font-bold">Momentos mágicos ✨</span>
+<span class="text-xs sm:text-sm font-hand text-2xl text-lavender-600 font-bold">Momentos mágicos ✨</span>
 </div>
-<div class="grid grid-cols-2 md:grid-cols-4 gap-3.5 md:gap-5" id="galeria-recuerdos">
-<!-- Generado dinámicamente desde CONFIG.recuerdos -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5" id="galeria-recuerdos">
+<!-- Item 1 -->
+<div class="relative bg-white rounded-2xl p-3 card-luxury border border-lavender-200 cursor-pointer flex flex-col group -rotate-1 hover:rotate-0 transition-transform duration-300" onclick="openLightbox('assets/recuerdo-1.jpg', 'Cenas llenas de risas y momentos que guardamos en el alma 🍷💫')">
+<div class="relative w-full aspect-square rounded-xl overflow-hidden bg-gradient-to-br from-lavender-100 to-pastellilac-100 mb-2.5 flex items-center justify-center">
+<img alt="Recuerdo 1" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="handleImageFallback(this, 'Recuerdo 1', 'assets/recuerdo-1.jpg')" src="assets/recuerdo-1.jpg"/>
 </div>
-</section>
-<!-- ====================================================================
-         4. VALES DE REGALO CANJEABLES (Conectados a WhatsApp con Animación)
-         ==================================================================== -->
-<section class="mb-10 md:mb-14">
-<div class="mb-5 md:mb-8 text-center max-w-xl mx-auto">
-<span class="inline-block px-3.5 py-1 rounded-full bg-lavender-100 text-lavender-700 text-xs md:text-sm font-bold tracking-wider uppercase mb-1.5 md:mb-2 border border-lavender-200">
-          Tus Regalos Exclusivos 🎁
-        </span>
-<h3 class="font-serif text-3xl md:text-4xl font-bold text-nightviolet-800">Vales de Cumpleaños</h3>
-<p class="text-xs md:text-sm text-softcharcoal-700/85 max-w-md mx-auto mt-1 md:mt-2 leading-relaxed">
-          Canjeá el que más te guste en cualquier momento. ¡Al tocar <strong>"Canjear vale"</strong>, nos llega un mensaje directo por WhatsApp para coordinarlo juntos!
+<p class="font-hand text-lg text-nightviolet-800 line-clamp-2 px-1 text-center font-medium leading-snug">
+          Cenas llenas de risas y momentos que guardamos en el alma 🍷💫
         </p>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6" id="vales-container">
-<!-- Generado dinámicamente desde CONFIG.vales -->
+<!-- Item 2 -->
+<div class="relative bg-white rounded-2xl p-3 card-luxury border border-lavender-200 cursor-pointer flex flex-col group rotate-1 hover:rotate-0 transition-transform duration-300" onclick="openLightbox('assets/recuerdo-2.jpg', 'Tardes de cafecito y charlas que nos alegran la vida ☕🌸')">
+<div class="relative w-full aspect-square rounded-xl overflow-hidden bg-gradient-to-br from-lavender-100 to-pastellilac-100 mb-2.5 flex items-center justify-center">
+<img alt="Recuerdo 2" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="handleImageFallback(this, 'Recuerdo 2', 'assets/recuerdo-2.jpg')" src="assets/recuerdo-2.jpg"/>
 </div>
-<div class="text-center mt-5 md:mt-6">
-<button class="text-[11px] md:text-xs text-softcharcoal-700/60 hover:text-nightviolet-800 underline transition-colors" id="btn-reset-vales" type="button">
-          Restablecer estado de los vales (modo prueba)
-        </button>
+<p class="font-hand text-lg text-nightviolet-800 line-clamp-2 px-1 text-center font-medium leading-snug">
+          Tardes de cafecito y charlas que nos alegran la vida ☕🌸
+        </p>
+</div>
+<!-- Item 3 -->
+<div class="relative bg-white rounded-2xl p-3 card-luxury border border-lavender-200 cursor-pointer flex flex-col group -rotate-1 hover:rotate-0 transition-transform duration-300" onclick="openLightbox('assets/recuerdo-3.jpg', 'Nuestra aventura en la nieve juntos y en familia ❄️🐾')">
+<div class="relative w-full aspect-square rounded-xl overflow-hidden bg-gradient-to-br from-lavender-100 to-pastellilac-100 mb-2.5 flex items-center justify-center">
+<img alt="Recuerdo 3" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="handleImageFallback(this, 'Recuerdo 3', 'assets/recuerdo-3.jpg')" src="assets/recuerdo-3.jpg"/>
+</div>
+<p class="font-hand text-lg text-nightviolet-800 line-clamp-2 px-1 text-center font-medium leading-snug">
+          Nuestra aventura en la nieve juntos y en familia ❄️🐾
+        </p>
+</div>
+<!-- Item 4 -->
+<div class="relative bg-white rounded-2xl p-3 card-luxury border border-lavender-200 cursor-pointer flex flex-col group rotate-1 hover:rotate-0 transition-transform duration-300" onclick="openLightbox('assets/recuerdo-4.jpg', 'Noches mágicas de playa y abrazos compartidos 🏖️💖')">
+<div class="relative w-full aspect-square rounded-xl overflow-hidden bg-gradient-to-br from-lavender-100 to-pastellilac-100 mb-2.5 flex items-center justify-center">
+<img alt="Recuerdo 4" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="handleImageFallback(this, 'Recuerdo 4', 'assets/recuerdo-4.jpg')" src="assets/recuerdo-4.jpg"/>
+</div>
+<p class="font-hand text-lg text-nightviolet-800 line-clamp-2 px-1 text-center font-medium leading-snug">
+          Noches mágicas de playa y abrazos compartidos 🏖️💖
+        </p>
+</div>
 </div>
 </section>
 <!-- ====================================================================
-         PIE DE PÁGINA EMOTIVO & CIERRE DECORATIVO
-         ==================================================================== -->
-<footer class="text-center pt-8 md:pt-14 pb-12 md:pb-16 border-t border-lavender-200/90 relative max-w-xl mx-auto">
-<div class="w-14 h-14 md:w-16 md:h-16 mx-auto mb-3.5 md:mb-4 rounded-full bg-gradient-to-tr from-lavender-500 via-pastellilac-400 to-pasteldorado-300 flex items-center justify-center text-white text-2xl md:text-3xl shadow-lg ring-4 ring-white">
-        🎂
-      </div>
-<h4 class="font-serif text-2xl md:text-3xl font-bold text-nightviolet-800">¡Que los cumplas muy feliz, Vir!</h4>
-<p class="text-xs md:text-sm text-softcharcoal-700/85 mt-1.5 md:mt-2 max-w-md mx-auto leading-relaxed">
-        Te amamos con toda el alma y te deseamos un año repleto de viajes, sonrisas, sueños cumplidos y momentos compartidos.
+       4. VALES DE REGALO CANJEABLES (2 Columnas en Desktop)
+       ==================================================================== -->
+<section class="mb-12">
+<div class="mb-6 text-center">
+<span class="inline-block px-4 py-1 rounded-full bg-lavender-100 text-lavender-700 text-xs font-bold tracking-wider uppercase mb-2 border border-lavender-200">
+        Tus Regalos Exclusivos 🎁
+      </span>
+<h3 class="font-serif text-3xl sm:text-4xl font-bold text-nightviolet-800">Vales de Cumpleaños</h3>
+<p class="text-xs sm:text-sm text-softcharcoal-700/85 max-w-md mx-auto mt-1 leading-relaxed">
+        Canjeá el que más te guste en cualquier momento. ¡Al tocar <strong>"Canjear vale"</strong>, nos llega un mensaje directo por WhatsApp para coordinarlo juntos!
       </p>
-<p class="font-hand text-3xl md:text-4xl text-lavender-600 mt-2 md:mt-3 font-bold">
-        Germán &amp; Cami 💜
-      </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5" id="vales-container">
+<!-- Vale 1 -->
+<div class="coupon-ticket-luxury rounded-2xl p-5 transition-all duration-300 hover:-translate-y-0.5" id="vale-card-desayuno">
+<div class="flex items-start gap-4">
+<div class="w-13 h-13 rounded-2xl bg-lavender-100/90 border border-lavender-200/80 flex items-center justify-center text-3xl flex-shrink-0 shadow-xs p-2">
+            🥐
+          </div>
+<div class="flex-1 min-w-0 pr-1">
+<div class="flex items-center justify-between gap-2 mb-1">
+<h4 class="font-serif font-bold text-base sm:text-lg text-nightviolet-800 leading-snug">
+                Vale por un desayuno en la cama
+              </h4>
+<div id="stamp-container-desayuno"></div>
+</div>
+<p class="text-xs sm:text-sm text-softcharcoal-700/80 leading-relaxed mb-3">
+              Preparado con todo el amor, café con espuma caliente, tostadas, frutas y lo que más te guste.
+            </p>
+<button class="btn-canjear-vale inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer bg-gradient-to-r from-lavender-600 via-pastellilac-500 to-lavender-500 text-white shadow-md hover:shadow-lavender-500/35 active:scale-95" data-vale-id="desayuno" type="button">
+<span>🎁 Canjear vale</span>
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+<!-- Vale 2 -->
+<div class="coupon-ticket-luxury rounded-2xl p-5 transition-all duration-300 hover:-translate-y-0.5" id="vale-card-cena">
+<div class="flex items-start gap-4">
+<div class="w-13 h-13 rounded-2xl bg-lavender-100/90 border border-lavender-200/80 flex items-center justify-center text-3xl flex-shrink-0 shadow-xs p-2">
+            🍷
+          </div>
+<div class="flex-1 min-w-0 pr-1">
+<div class="flex items-center justify-between gap-2 mb-1">
+<h4 class="font-serif font-bold text-base sm:text-lg text-nightviolet-800 leading-snug">
+                Vale por cena donde vos elijas
+              </h4>
+<div id="stamp-container-cena"></div>
+</div>
+<p class="text-xs sm:text-sm text-softcharcoal-700/80 leading-relaxed mb-3">
+              El restaurante o comida que tengas ganas de disfrutar, invitación completa y noche especial.
+            </p>
+<button class="btn-canjear-vale inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer bg-gradient-to-r from-lavender-600 via-pastellilac-500 to-lavender-500 text-white shadow-md hover:shadow-lavender-500/35 active:scale-95" data-vale-id="cena" type="button">
+<span>🎁 Canjear vale</span>
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+<!-- Vale 3 -->
+<div class="coupon-ticket-luxury rounded-2xl p-5 transition-all duration-300 hover:-translate-y-0.5" id="vale-card-mimos">
+<div class="flex items-start gap-4">
+<div class="w-13 h-13 rounded-2xl bg-lavender-100/90 border border-lavender-200/80 flex items-center justify-center text-3xl flex-shrink-0 shadow-xs p-2">
+            🍿
+          </div>
+<div class="flex-1 min-w-0 pr-1">
+<div class="flex items-center justify-between gap-2 mb-1">
+<h4 class="font-serif font-bold text-base sm:text-lg text-nightviolet-800 leading-snug">
+                Vale por tarde de mimos y peli
+              </h4>
+<div id="stamp-container-mimos"></div>
+</div>
+<p class="text-xs sm:text-sm text-softcharcoal-700/80 leading-relaxed mb-3">
+              Pochoclos, mantita suave, masajes y tu maratón de películas o serie favorita sin interrupciones.
+            </p>
+<button class="btn-canjear-vale inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer bg-gradient-to-r from-lavender-600 via-pastellilac-500 to-lavender-500 text-white shadow-md hover:shadow-lavender-500/35 active:scale-95" data-vale-id="mimos" type="button">
+<span>🎁 Canjear vale</span>
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+<!-- Vale 4 -->
+<div class="coupon-ticket-luxury rounded-2xl p-5 transition-all duration-300 hover:-translate-y-0.5" id="vale-card-comodin">
+<div class="flex items-start gap-4">
+<div class="w-13 h-13 rounded-2xl bg-lavender-100/90 border border-lavender-200/80 flex items-center justify-center text-3xl flex-shrink-0 shadow-xs p-2">
+            ✨
+          </div>
+<div class="flex-1 min-w-0 pr-1">
+<div class="flex items-center justify-between gap-2 mb-1">
+<h4 class="font-serif font-bold text-base sm:text-lg text-nightviolet-800 leading-snug">
+                Comodín a elección libre
+              </h4>
+<div id="stamp-container-comodin"></div>
+</div>
+<p class="text-xs sm:text-sm text-softcharcoal-700/80 leading-relaxed mb-3">
+              Válido por cualquier deseo, escapada o capricho que se te ocurra, ¡sin peros ni objeciones!
+            </p>
+<button class="btn-canjear-vale inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer bg-gradient-to-r from-lavender-600 via-pastellilac-500 to-lavender-500 text-white shadow-md hover:shadow-lavender-500/35 active:scale-95" data-vale-id="comodin" type="button">
+<span>🎁 Canjear vale</span>
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="text-center mt-5">
+<button class="text-[11px] text-softcharcoal-700/60 hover:text-nightviolet-800 underline transition-colors cursor-pointer" id="btn-reset-vales" type="button">
+        Restablecer estado de los vales (modo prueba)
+      </button>
+</div>
+</section>
+<!-- ====================================================================
+       PIE DE PÁGINA EMOTIVO & CIERRE DECORATIVO
+       ==================================================================== -->
+<footer class="text-center pt-8 pb-12 border-t border-lavender-200/90 relative">
+<div class="w-14 h-14 mx-auto mb-3.5 rounded-full bg-gradient-to-tr from-lavender-500 via-pastellilac-400 to-pasteldorado-300 flex items-center justify-center text-white text-2xl shadow-lg ring-4 ring-white">
+      🎂
+    </div>
+<h4 class="font-serif text-2xl sm:text-3xl font-bold text-nightviolet-800">¡Que los cumplas muy feliz, Vir!</h4>
+<p class="text-xs sm:text-sm text-softcharcoal-700/85 mt-2 max-w-sm mx-auto leading-relaxed">
+      Te amamos con toda el alma y te deseamos un año repleto de viajes, sonrisas, sueños cumplidos y momentos compartidos.
+    </p>
+<p class="font-hand text-3xl sm:text-4xl text-lavender-600 mt-2.5 font-bold">
+      Germán &amp; Cami 💜
+    </p>
 </footer>
 </main>
 <!-- ====================================================================
-       MODAL LIGHTBOX PARA FOTOS DE LA GALERÍA
-       ==================================================================== -->
-<div class="fixed inset-0 z-50 bg-nightviolet-950/90 backdrop-blur-md hidden flex flex-col items-center justify-center p-4 transition-all duration-300" id="lightbox-modal">
+     MODAL LIGHTBOX PARA FOTOS DE LA GALERÍA
+     ==================================================================== -->
+<div class="fixed inset-0 z-50 bg-nightviolet-950/85 backdrop-blur-md hidden flex flex-col items-center justify-center p-4 transition-all duration-300" id="lightbox-modal">
 <button aria-label="Cerrar foto" class="absolute top-5 right-5 w-11 h-11 rounded-full bg-white/20 text-white flex items-center justify-center hover:bg-white/30 transition-colors cursor-pointer border border-white/20" id="lightbox-close" type="button">
 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
 <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"></path>
 </svg>
 </button>
-<div class="max-w-sm md:max-w-xl lg:max-w-2xl w-full bg-white rounded-3xl overflow-hidden shadow-2xl p-3 md:p-5 border border-lavender-200">
-<div class="w-full max-h-[75vh] rounded-2xl overflow-hidden bg-lavender-100 flex items-center justify-center">
-<img alt="Recuerdo ampliado" class="w-full h-full object-contain max-h-[70vh]" id="lightbox-img" src=""/>
+<div class="max-w-md w-full bg-white rounded-3xl overflow-hidden shadow-2xl p-4 border border-lavender-200">
+<div class="w-full max-h-[70vh] rounded-2xl overflow-hidden bg-lavender-100 flex items-center justify-center">
+<img alt="Recuerdo ampliado" class="w-full h-full object-contain max-h-[65vh]" id="lightbox-img" src=""/>
 </div>
-<p class="font-hand text-2xl md:text-3xl text-center text-nightviolet-800 pt-3.5 md:pt-4 px-3 leading-relaxed" id="lightbox-caption"></p>
+<p class="font-hand text-2xl text-center text-nightviolet-800 pt-3.5 px-3 leading-relaxed" id="lightbox-caption"></p>
 </div>
 </div>
 <!-- ====================================================================
-       LÓGICA JAVASCRIPT & CONFIGURACIÓN
-       ==================================================================== -->
+     LÓGICA JAVASCRIPT & CONFIGURACIÓN RESISTENTE A FALLOS
+     ==================================================================== -->
 <script>
-    /* ====================================================================
-       CONFIG: AJUSTA AQUÍ TUS DATOS FÁCILMENTE
-       ==================================================================== */
-    const CONFIG = {
-      // 1. NÚMERO DE WHATSAPP PARA LOS VALES:
-      whatsappNumber: "5491150395691",
-
-      // 2. NOMBRES Y FECHA
-      cumpleanera: "Vir",
-      remitentePrincipal: "Germán",
-      hija: "Cami",
-      fechaEspecial: "Noviembre Especial ✨",
-      fraseHero: "¡Muy Feliz Cumpleaños, Vir!",
-      subfraseHero: '"Gracias por iluminar nuestros días con tu amor y tu sonrisa."',
-
-      // 3. TRANSCRIPCIÓN LITERAL DEL AUDIO (Sincronizada con el audio real)
-      cartas: {
-        german: {
-          subtitulos: [
-            { start: 0.0, end: 4.8, text: "Hola Vir, en este día tan especial te quiero decir que te amo mucho..." },
-            { start: 4.8, end: 11.2, text: "...que sos una madre y una esposa espectacular..." },
-            { start: 11.2, end: 19.5, text: "...que te agradezco muchísimo por siempre estar a mi lado y al lado de Cami, y siempre apoyarnos..." },
-            { start: 19.5, end: 26.5, text: "...y que bueno, y que te deseamos de todo corazón que tengas un día y una vida espectacular. ❤️" }
-          ]
-        },
-        cami: {
-          subtitulos: [
-            { start: 0.0, end: 2.8, text: "Hola mami, ¡feliz cumple! 🎉" },
-            { start: 2.8, end: 5.5, text: "Que la pases muy lindo, ¡te quiero mucho! 💕" },
-            { start: 5.5, end: 8.5, text: "Que disfrutes los regalos... ¡chau! 🌸✨" }
-          ]
-        }
+  const CONFIG = {
+    whatsappNumber: "5491150395691",
+    cumpleanera: "Vir",
+    remitentePrincipal: "Germán",
+    hija: "Cami",
+    fechaEspecial: "Noviembre Especial ✨",
+    fraseHero: "¡Muy Feliz Cumpleaños, Vir!",
+    subfraseHero: '"Gracias por iluminar nuestros días con tu amor y tu sonrisa."',
+    cartas: {
+      german: `Vir de mi vida,\n\nHoy quiero tomarme un ratito para decirte lo importante que sos para mí. Gracias por cada mate compartido, por cada charla interminable, por apoyarme en cada paso y por ser esa compañera de vida tan hermosa, divertida, fuerte y luminosa.\n\nVerte sonreír es mi momento favorito de todos los días. Te merecés todo lo más lindo de este mundo hoy y siempre.\n\n¡Feliz cumple, mi amor! Te amo con todo mi corazón.\n— Germán`,
+      cami: `¡Mami hermosa! 💜\n\n¡Muy muy feliz cumpleaños! Gracias por cuidarme tanto, por tus mimos infinitos, por enseñarme tantas cosas lindas y por ser la mejor mamá del universo entero.\n\nTe amo de acá hasta las estrellas y el infinito. ¡Hoy te vamos a consentir un montón como te merecés!\n\n— Cami 🌸`
+    },
+    vales: [
+      {
+        id: "desayuno",
+        emoji: "🥐",
+        titulo: "Vale por un desayuno en la cama",
+        descripcion: "Preparado con todo el amor, café con espuma caliente, tostadas, frutas y lo que más te guste.",
+        whatsappMsg: "¡Hola amor! Canjeé mi vale: *Vale por un desayuno en la cama* 🥐☕💜 ¡Cuando quieras me lo preparás!"
       },
-
-      // 4. GALERÍA DE RECUERDOS (4 fotos con sus epígrafes)
-      recuerdos: [
-        {
-          id: 1,
-          src: "assets/recuerdo-1.jpg",
-          titulo: "Cena en familia",
-          epigrafe: "Cenas llenas de risas y momentos que guardamos en el alma 🍷💫"
-        },
-        {
-          id: 2,
-          src: "assets/recuerdo-2.jpg",
-          titulo: "Merienda en Osada",
-          epigrafe: "Tardes de cafecito y charlas que nos alegran la vida ☕🌸"
-        },
-        {
-          id: 3,
-          src: "assets/recuerdo-3.jpg",
-          titulo: "Aventura en la nieve",
-          epigrafe: "Nuestra aventura en la nieve juntos y en familia ❄️🐾"
-        },
-        {
-          id: 4,
-          src: "assets/recuerdo-4.jpg",
-          titulo: "Noche de playa",
-          epigrafe: "Noches mágicas de playa y abrazos compartidos 🏖️💖"
-        }
-      ],
-
-      // 5. VALES DE REGALO CANJEABLES
-      vales: [
-        {
-          id: "desayuno",
-          emoji: "🥐",
-          titulo: "Vale por un desayuno en la cama",
-          descripcion: "Preparado con todo el amor, café con espuma caliente, frutas y lo que más te guste.",
-          whatsappMsg: "¡Hola amor! Canjeé mi vale: *Vale por un desayuno en la cama* 🥐☕💜 ¡Cuando quieras me lo preparás!"
-        },
-        {
-          id: "cena",
-          emoji: "🍷",
-          titulo: "Vale por cena donde vos elijas",
-          descripcion: "El restaurante o comida que tengas ganas de disfrutar, invitación completa.",
-          whatsappMsg: "¡Hola amor! Acabo de canjear mi vale: *Vale por cena donde vos elijas* 🍷✨ ¡Andá pensando a dónde vamos!"
-        },
-        {
-          id: "mimos",
-          emoji: "🍿",
-          titulo: "Vale por tarde de mimos y peli",
-          descripcion: "Pochoclos, mantita, masajes y tu maratón de películas o serie favorita sin interrupciones.",
-          whatsappMsg: "¡Hola! Canjeé mi vale: *Vale por tarde de mimos y película* 🍿🛋️🥰 ¡Reservame la tarde!"
-        },
-        {
-          id: "comodin",
-          emoji: "✨",
-          titulo: "Comodín a elección libre",
-          descripcion: "Válido por cualquier deseo, escapada o capricho que se te ocurra, ¡sin peros ni objeciones!",
-          whatsappMsg: "¡Hola amor! Canjeé el *Comodín a elección libre* ✨🤩 ¡Después te cuento qué se me ocurrió!"
-        }
-      ]
-    };
-
-
-    /* ====================================================================
-       MANEJO ELEGANTE DE FALLBACKS (Fotos & Avatares)
-       ==================================================================== */
-    function handleImageFallback(imgElement, label, subtitle) {
-      const parent = imgElement.parentElement;
-      imgElement.style.display = 'none';
-
-      if (parent.querySelector('.custom-img-fallback')) return;
-
-      const fallbackDiv = document.createElement('div');
-      fallbackDiv.className = 'custom-img-fallback absolute inset-0 flex flex-col items-center justify-center p-4 text-center bg-gradient-to-br from-lavender-100 via-pastellilac-50 to-lavender-200 text-nightviolet-800';
-      fallbackDiv.innerHTML = `
-        <div class="w-14 h-14 rounded-2xl bg-white/90 shadow-md flex items-center justify-center text-2xl mb-2.5 border border-lavender-200">
-          📷
-        </div>
-        <p class="font-serif font-bold text-lg text-nightviolet-800 leading-tight">${label}</p>
-        <p class="text-[11px] text-lavender-600 font-medium mt-1">${subtitle || 'Cargá tu foto en assets/'}</p>
-      `;
-      parent.appendChild(fallbackDiv);
-    }
-
-    function handleAvatarFallback(imgElement, initial, bgColor) {
-      const parent = imgElement.parentElement;
-      imgElement.style.display = 'none';
-      if (parent.querySelector('.custom-avatar-fallback')) return;
-
-      const fallbackDiv = document.createElement('div');
-      fallbackDiv.className = 'custom-avatar-fallback w-full h-full flex items-center justify-center font-serif font-bold text-2xl text-white shadow-inner';
-      fallbackDiv.style.backgroundColor = bgColor || '#9E77E7';
-      fallbackDiv.innerText = initial;
-      parent.appendChild(fallbackDiv);
-    }
-
-
-    /* ====================================================================
-       SINTETIZADOR DE AUDIO FALLBACK (Web Audio API)
-       Garantiza que las ondas y barras se muevan si aún no colocaron los audios
-       ==================================================================== */
-    class DemoAudioSynth {
-      constructor(onEndCallback) {
-        this.ctx = null;
-        this.isPlaying = false;
-        this.duration = 15;
-        this.currentTime = 0;
-        this.timer = null;
-        this.onEnd = onEndCallback;
+      {
+        id: "cena",
+        emoji: "🍷",
+        titulo: "Vale por cena donde vos elijas",
+        descripcion: "El restaurante o comida que tengas ganas de disfrutar, invitación completa y noche especial.",
+        whatsappMsg: "¡Hola amor! Acabo de canjear mi vale: *Vale por cena donde vos elijas* 🍷✨ ¡Andá pensando a dónde vamos!"
+      },
+      {
+        id: "mimos",
+        emoji: "🍿",
+        titulo: "Vale por tarde de mimos y peli",
+        descripcion: "Pochoclos, mantita suave, masajes y tu maratón de películas o serie favorita sin interrupciones.",
+        whatsappMsg: "¡Hola! Canjeé mi vale: *Vale por tarde de mimos y película* 🍿🛋️🥰 ¡Reservame la tarde!"
+      },
+      {
+        id: "comodin",
+        emoji: "✨",
+        titulo: "Comodín a elección libre",
+        descripcion: "Válido por cualquier deseo, escapada o capricho que se te ocurra, ¡sin peros ni objeciones!",
+        whatsappMsg: "¡Hola amor! Canjeé el *Comodín a elección libre* ✨🤩 ¡Después te cuento qué se me ocurrió!"
       }
+    ]
+  };
 
-      init() {
-        if (!this.ctx) {
-          const AudioContext = window.AudioContext || window.webkitAudioContext;
-          if (AudioContext) this.ctx = new AudioContext();
-        }
-      }
-
-      playNote(freq, time, dur) {
-        if (!this.ctx) return;
-        try {
-          const osc = this.ctx.createOscillator();
-          const gain = this.ctx.createGain();
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(freq, time);
-          gain.gain.setValueAtTime(0.035, time);
-          gain.gain.exponentialRampToValueAtTime(0.0001, time + dur);
-          osc.connect(gain);
-          gain.connect(this.ctx.destination);
-          osc.start(time);
-          osc.stop(time + dur);
-        } catch(e) {}
-      }
-
-      start(onTick) {
-        this.init();
-        if (this.ctx && this.ctx.state === 'suspended') this.ctx.resume();
-        this.isPlaying = true;
-        
-        const notes = [261.63, 329.63, 392.00, 523.25, 440.00, 392.00, 329.63];
-        let noteIndex = 0;
-
-        clearInterval(this.timer);
-        this.timer = setInterval(() => {
-          if (!this.isPlaying) return;
-          this.currentTime += 0.25;
-
-          if (Math.floor(this.currentTime * 4) % 4 === 0) {
-            if (this.ctx) {
-              const now = this.ctx.currentTime;
-              this.playNote(notes[noteIndex % notes.length], now, 0.55);
-              noteIndex++;
-            }
-          }
-
-          if (onTick) onTick(this.currentTime, this.duration);
-
-          if (this.currentTime >= this.duration) {
-            this.stop();
-            if (this.onEnd) this.onEnd();
-          }
+  // Lanzador robusto de confeti con respaldo nativo garantizado
+  function triggerCelebrationConfetti() {
+    try {
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 120,
+          spread: 80,
+          origin: { y: 0.55 },
+          colors: ['#9E77E7', '#CF9FF0', '#D5C4F6', '#DFBE8B', '#F5D6E7', '#CCA368', '#FFFFFF']
+        });
+        setTimeout(() => {
+          confetti({ particleCount: 70, angle: 60, spread: 55, origin: { x: 0.05, y: 0.65 }, colors: ['#9E77E7', '#DFBE8B', '#BC9FEF'] });
+          confetti({ particleCount: 70, angle: 120, spread: 55, origin: { x: 0.95, y: 0.65 }, colors: ['#CF9FF0', '#E8DEFA', '#D66BA7'] });
         }, 250);
+        return;
       }
+    } catch(e) {
+      console.warn('Canvas confetti error:', e);
+    }
 
-      pause() {
-        this.isPlaying = false;
-        clearInterval(this.timer);
+    // Respaldo de partículas CSS si la librería fallara
+    try {
+      const container = document.body;
+      const colors = ['#9E77E7', '#CF9FF0', '#DFBE8B', '#F5D6E7', '#CCA368'];
+      for (let i = 0; i < 40; i++) {
+        const dot = document.createElement('div');
+        dot.style.position = 'fixed';
+        dot.style.zIndex = '9999';
+        dot.style.width = Math.random() * 10 + 6 + 'px';
+        dot.style.height = Math.random() * 10 + 6 + 'px';
+        dot.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        dot.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+        dot.style.top = '45%';
+        dot.style.left = '50%';
+        dot.style.transform = `translate(-50%, -50%) translate(${(Math.random() - 0.5) * 450}px, ${(Math.random() - 0.5) * 450}px) rotate(${Math.random() * 360}deg)`;
+        dot.style.opacity = '1';
+        dot.style.transition = 'all 1s cubic-bezier(0.1, 1, 0.1, 1)';
+        dot.style.pointerEvents = 'none';
+        container.appendChild(dot);
+        setTimeout(() => {
+          dot.style.opacity = '0';
+          dot.style.transform += ' translateY(60px)';
+          setTimeout(() => dot.remove(), 1000);
+        }, 30);
       }
+    } catch(err) {}
+  }
 
-      stop() {
-        this.isPlaying = false;
-        clearInterval(this.timer);
-        this.currentTime = 0;
+  // FLUJO DE DOS PASOS: APERTURA DEL REGALO
+  function openGiftRevealCard() {
+    const step1 = document.getElementById('step1-welcome');
+    const step2 = document.getElementById('step2-card-content');
+    if (!step1 || !step2) return;
+
+    // 1. Lanzar gran explosión de confeti
+    triggerCelebrationConfetti();
+    setTimeout(triggerCelebrationConfetti, 400);
+
+    // 2. Transición suave de salida para el Paso 1
+    step1.classList.add('step-fade-out');
+
+    setTimeout(() => {
+      step1.style.display = 'none';
+      step2.classList.remove('hidden');
+      
+      // Forzar reflow para animación CSS
+      void step2.offsetWidth;
+
+      // Animar entrada de la tarjeta completa (Paso 2)
+      step2.classList.add('step-revealed');
+
+      // Scroll suave automático al inicio del contenido revelado
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }, 600);
+  }
+
+  // VOLVER A LA PORTADA DE BIENVENIDA (Reabrir sorpresa)
+  function replayWelcomeCover() {
+    const step1 = document.getElementById('step1-welcome');
+    const step2 = document.getElementById('step2-card-content');
+    if (!step1 || !step2) return;
+
+    step2.classList.remove('step-revealed');
+    step2.classList.add('opacity-0', 'translate-y-6');
+
+    setTimeout(() => {
+      step2.classList.add('hidden');
+      step1.style.display = 'flex';
+      step1.classList.remove('step-fade-out');
+      
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+      triggerCelebrationConfetti();
+    }, 450);
+  }
+
+  function handleImageFallback(imgElement, label, subtitle) {
+    const parent = imgElement.parentElement;
+    imgElement.style.display = 'none';
+    if (parent.querySelector('.custom-img-fallback')) return;
+
+    const fallbackDiv = document.createElement('div');
+    fallbackDiv.className = 'custom-img-fallback absolute inset-0 flex flex-col items-center justify-center p-4 text-center bg-gradient-to-br from-lavender-100 via-pastellilac-50 to-lavender-200 text-nightviolet-800';
+    fallbackDiv.innerHTML = `
+      <div class="w-12 h-12 rounded-2xl bg-white/90 shadow-md flex items-center justify-center text-2xl mb-2 border border-lavender-200">
+        📷
+      </div>
+      <p class="font-serif font-bold text-base text-nightviolet-800 leading-tight">${label}</p>
+      <p class="text-[11px] text-lavender-600 font-medium mt-1">${subtitle || 'Recuerdo familiar'}</p>
+    `;
+    parent.appendChild(fallbackDiv);
+  }
+
+  function handleAvatarFallback(imgElement, initial, bgColor) {
+    const parent = imgElement.parentElement;
+    imgElement.style.display = 'none';
+    if (parent.querySelector('.custom-avatar-fallback')) return;
+
+    const fallbackDiv = document.createElement('div');
+    fallbackDiv.className = 'custom-avatar-fallback w-full h-full flex items-center justify-center font-serif font-bold text-2xl text-white shadow-inner';
+    fallbackDiv.style.backgroundColor = bgColor || '#9E77E7';
+    fallbackDiv.innerText = initial;
+    parent.appendChild(fallbackDiv);
+  }
+
+  class DemoAudioSynth {
+    constructor(onEndCallback) {
+      this.ctx = null;
+      this.isPlaying = false;
+      this.duration = 15;
+      this.currentTime = 0;
+      this.timer = null;
+      this.onEnd = onEndCallback;
+    }
+    init() {
+      if (!this.ctx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) this.ctx = new AudioContext();
       }
+    }
+    playNote(freq, time, dur) {
+      if (!this.ctx) return;
+      try {
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, time);
+        gain.gain.setValueAtTime(0.03, time);
+        gain.gain.exponentialRampToValueAtTime(0.0001, time + dur);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start(time);
+        osc.stop(time + dur);
+      } catch(e) {}
+    }
+    start(onTick) {
+      this.init();
+      if (this.ctx && this.ctx.state === 'suspended') this.ctx.resume();
+      this.isPlaying = true;
+      const notes = [261.63, 329.63, 392.00, 523.25, 440.00, 392.00, 329.63];
+      let noteIndex = 0;
+      clearInterval(this.timer);
+      this.timer = setInterval(() => {
+        if (!this.isPlaying) return;
+        this.currentTime += 0.25;
+        if (Math.floor(this.currentTime * 4) % 4 === 0 && this.ctx) {
+          this.playNote(notes[noteIndex % notes.length], this.ctx.currentTime, 0.5);
+          noteIndex++;
+        }
+        if (onTick) onTick(this.currentTime, this.duration);
+        if (this.currentTime >= this.duration) {
+          this.stop();
+          if (this.onEnd) this.onEnd();
+        }
+      }, 250);
+    }
+    pause() {
+      this.isPlaying = false;
+      clearInterval(this.timer);
+    }
+    stop() {
+      this.isPlaying = false;
+      clearInterval(this.timer);
+      this.currentTime = 0;
+    }
+    seek(time) {
+      this.currentTime = Math.max(0, Math.min(time, this.duration));
+    }
+  }
 
-      seek(time) {
-        this.currentTime = Math.max(0, Math.min(time, this.duration));
+  function setupAudioPlayer(config) {
+    const { audioSrc, btnPlay, iconPlay, iconPause, timeCurrent, timeTotal, progressBar, progressContainer, wavesContainer, playerCard, otherPlayerGetter } = config;
+    const audio = new Audio();
+    audio.preload = 'metadata';
+    audio.src = audioSrc;
+
+    let isPlaying = false;
+    let isFallbackMode = false;
+    let synth = null;
+
+    function formatTime(seconds) {
+      if (isNaN(seconds) || seconds === Infinity) return "0:00";
+      const m = Math.floor(seconds / 60);
+      const s = Math.floor(seconds % 60);
+      return `${m}:${s < 10 ? '0' : ''}${s}`;
+    }
+
+    function setPlayingState(playing) {
+      isPlaying = playing;
+      if (playing) {
+        iconPlay.classList.add('hidden');
+        iconPause.classList.remove('hidden');
+        wavesContainer.classList.add('playing');
+        playerCard.classList.add('ring-2', 'ring-lavender-400/50');
+        if (onPlay) onPlay();
+      } else {
+        iconPlay.classList.remove('hidden');
+        iconPause.classList.add('hidden');
+        wavesContainer.classList.remove('playing');
+        playerCard.classList.remove('ring-2', 'ring-lavender-400/50');
       }
     }
 
-
-    /* ====================================================================
-       REPRODUCTOR DE AUDIO
-       ==================================================================== */
-    function setupAudioPlayer(config) {
-      const {
-        audioSrc,
-        btnPlay,
-        iconPlay,
-        iconPause,
-        timeCurrent,
-        timeTotal,
-        progressBar,
-        progressContainer,
-        wavesContainer,
-        playerCard,
-        fallbackNotice,
-        otherPlayerGetter
-      } = config;
-
-      const audio = new Audio();
-      audio.preload = 'metadata';
-      
-      const sources = Array.isArray(audioSrc) ? audioSrc : [audioSrc];
-      let currentSourceIdx = 0;
-      audio.src = sources[currentSourceIdx];
-
-      let isPlaying = false;
-      let isFallbackMode = false;
-      let synth = null;
-
-      function formatTime(seconds) {
-        if (isNaN(seconds) || seconds === Infinity) return "0:00";
-        const m = Math.floor(seconds / 60);
-        const s = Math.floor(seconds % 60);
-        return `${m}:${s < 10 ? '0' : ''}${s}`;
+    audio.addEventListener('error', () => {
+      if (sourceIdx < sources.length - 1) {
+        sourceIdx++;
+        audio.src = sources[sourceIdx];
+        audio.load();
+        return;
       }
+      isFallbackMode = true;
+      timeTotal.innerText = "0:15";
+    });
 
-      function setPlayingState(playing) {
-        isPlaying = playing;
-        if (playing) {
-          iconPlay.classList.add('hidden');
-          iconPause.classList.remove('hidden');
-          wavesContainer.classList.add('playing');
-          playerCard.classList.add('ring-2', 'ring-lavender-400/50');
-          if (config.onPlay) config.onPlay();
-        } else {
-          iconPlay.classList.remove('hidden');
-          iconPause.classList.add('hidden');
-          wavesContainer.classList.remove('playing');
-          playerCard.classList.remove('ring-2', 'ring-lavender-400/50');
-        }
+    audio.addEventListener('loadedmetadata', () => {
+      isFallbackMode = false;
+      timeTotal.innerText = formatTime(audio.duration);
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      if (!isFallbackMode && audio.duration) {
+        const current = audio.currentTime;
+        const total = audio.duration;
+        timeCurrent.innerText = formatTime(current);
+        timeTotal.innerText = formatTime(total);
+        progressBar.style.width = `${(current / total) * 100}%`;
       }
+    });
 
-      audio.addEventListener('error', () => {
-        if (currentSourceIdx < sources.length - 1) {
-          currentSourceIdx++;
-          audio.src = sources[currentSourceIdx];
-          audio.load();
-        } else {
-          isFallbackMode = true;
-          if (fallbackNotice) fallbackNotice.classList.remove('hidden');
-          timeTotal.innerText = "0:15";
-        }
-      });
+    audio.addEventListener('ended', () => {
+      setPlayingState(false);
+      progressBar.style.width = '0%';
+      timeCurrent.innerText = '0:00';
+      if (onEnded) onEnded();
+    });
 
-      audio.addEventListener('loadedmetadata', () => {
-        isFallbackMode = false;
-        timeTotal.innerText = formatTime(audio.duration);
-      });
+    function togglePlay() {
+      const other = otherPlayerGetter();
+      if (other && other.pause) other.pause();
 
-      audio.addEventListener('timeupdate', () => {
-        if (!isFallbackMode && audio.duration) {
-          const current = audio.currentTime;
-          const total = audio.duration;
-          timeCurrent.innerText = formatTime(current);
-          timeTotal.innerText = formatTime(total);
-          const percent = (current / total) * 100;
-          progressBar.style.width = `${percent}%`;
-          if (config.onTimeUpdate) config.onTimeUpdate(current);
-        }
-      });
-
-      audio.addEventListener('ended', () => {
-        setPlayingState(false);
-        progressBar.style.width = '0%';
-        timeCurrent.innerText = '0:00';
-        if (config.onEnded) config.onEnded();
-      });
-
-      function togglePlay() {
-        const otherPlayer = otherPlayerGetter();
-        if (otherPlayer && otherPlayer.pause) otherPlayer.pause();
-
-        if (isFallbackMode) {
-          if (!synth) {
-            synth = new DemoAudioSynth(() => {
-              setPlayingState(false);
-              progressBar.style.width = '0%';
-              timeCurrent.innerText = '0:00';
-            });
-          }
-
-          if (isPlaying) {
-            synth.pause();
+      if (isFallbackMode) {
+        if (!synth) {
+          synth = new DemoAudioSynth(() => {
             setPlayingState(false);
-          } else {
-            synth.start((current, total) => {
-              timeCurrent.innerText = formatTime(current);
-              timeTotal.innerText = formatTime(total);
-              progressBar.style.width = `${(current / total) * 100}%`;
-            });
-            setPlayingState(true);
-          }
-          return;
-        }
-
-        if (audio.paused) {
-          audio.play().then(() => {
-            setPlayingState(true);
-          }).catch(() => {
-            isFallbackMode = true;
-            if (fallbackNotice) fallbackNotice.classList.remove('hidden');
-            togglePlay();
+            progressBar.style.width = '0%';
+            timeCurrent.innerText = '0:00';
           });
+        }
+        if (isPlaying) {
+          synth.pause();
+          setPlayingState(false);
         } else {
+          synth.start((current, total) => {
+            timeCurrent.innerText = formatTime(current);
+            timeTotal.innerText = formatTime(total);
+            progressBar.style.width = `${(current / total) * 100}%`;
+          });
+          setPlayingState(true);
+        }
+        return;
+      }
+
+      if (audio.paused) {
+        audio.play().then(() => setPlayingState(true)).catch(() => {
+          isFallbackMode = true;
+          togglePlay();
+        });
+      } else {
+        audio.pause();
+        setPlayingState(false);
+      }
+    }
+
+    btnPlay.addEventListener('click', togglePlay);
+
+    progressContainer.addEventListener('click', (e) => {
+      const rect = progressContainer.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const pct = Math.max(0, Math.min(clientX - rect.left, rect.width)) / rect.width;
+      if (isFallbackMode) {
+        if (!synth) synth = new DemoAudioSynth();
+        const t = pct * (synth.duration || 15);
+        synth.seek(t);
+        timeCurrent.innerText = formatTime(t);
+        progressBar.style.width = `${pct * 100}%`;
+      } else if (audio.duration) {
+        audio.currentTime = pct * audio.duration;
+        progressBar.style.width = `${pct * 100}%`;
+      }
+    });
+
+    return {
+      pause: () => {
+        if (isFallbackMode && synth && synth.isPlaying) {
+          synth.pause();
+          setPlayingState(false);
+        } else if (!audio.paused) {
           audio.pause();
           setPlayingState(false);
         }
       }
+    };
+  }
 
-      function pauseAudio() {
-        if (isFallbackMode) {
-          if (synth && synth.isPlaying) {
-            synth.pause();
-            setPlayingState(false);
-          }
+  function renderValesState() {
+    let redeemedMap = {};
+    try {
+      redeemedMap = JSON.parse(localStorage.getItem('vir_vales_canjeados') || '{}');
+    } catch(e) {}
+
+    CONFIG.vales.forEach(vale => {
+      const isRedeemed = !!redeemedMap[vale.id];
+      const stampContainer = document.getElementById(`stamp-container-${vale.id}`);
+      const card = document.getElementById(`vale-card-${vale.id}`);
+      const btn = card ? card.querySelector('.btn-canjear-vale') : null;
+
+      if (stampContainer) {
+        stampContainer.innerHTML = isRedeemed ? `<span class="stamp-redeemed">✓ Canjeado</span>` : '';
+      }
+      if (card) {
+        if (isRedeemed) {
+          card.classList.add('bg-lavender-50/60', 'opacity-90');
         } else {
-          if (!audio.paused) {
-            audio.pause();
-            setPlayingState(false);
-          }
+          card.classList.remove('bg-lavender-50/60', 'opacity-90');
         }
       }
-
-      btnPlay.addEventListener('click', togglePlay);
-
-      function seek(e) {
-        const rect = progressContainer.getBoundingClientRect();
-        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-        const offsetX = Math.max(0, Math.min(clientX - rect.left, rect.width));
-        const percentage = offsetX / rect.width;
-
-        if (isFallbackMode) {
-          if (!synth) synth = new DemoAudioSynth();
-          const targetTime = percentage * (synth.duration || 15);
-          synth.seek(targetTime);
-          timeCurrent.innerText = formatTime(targetTime);
-          progressBar.style.width = `${percentage * 100}%`;
+      if (btn) {
+        if (isRedeemed) {
+          btn.innerHTML = `<span>📱 Mensaje enviado</span><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>`;
+          btn.className = 'btn-canjear-vale inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer bg-lavender-100 text-lavender-700 hover:bg-lavender-200';
         } else {
-          if (audio.duration) {
-            audio.currentTime = percentage * audio.duration;
-            progressBar.style.width = `${percentage * 100}%`;
-          }
+          btn.innerHTML = `<span>🎁 Canjear vale</span><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>`;
+          btn.className = 'btn-canjear-vale inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer bg-gradient-to-r from-lavender-600 via-pastellilac-500 to-lavender-500 text-white shadow-md hover:shadow-lavender-500/35 active:scale-95';
         }
       }
+    });
+  }
 
-      progressContainer.addEventListener('click', seek);
+  function canjearVale(valeId) {
+    const vale = CONFIG.vales.find(v => v.id === valeId);
+    if (!vale) return;
 
-      return { pause: pauseAudio };
-    }
+    triggerCelebrationConfetti();
 
-
-    /* ====================================================================
-       RENDERIZADO DE VALES DE REGALO
-       ==================================================================== */
-    function renderVales() {
-      const valesContainer = document.getElementById('vales-container');
-      valesContainer.innerHTML = '';
-
-      const redeemedMap = JSON.parse(localStorage.getItem('vir_vales_canjeados') || '{}');
-
-      CONFIG.vales.forEach((vale) => {
-        const isRedeemed = !!redeemedMap[vale.id];
-        const card = document.createElement('div');
-        card.id = `vale-card-${vale.id}`;
-        card.className = `coupon-ticket-luxury rounded-2xl p-4 md:p-5 transition-all duration-300 ${
-          isRedeemed ? 'bg-lavender-50/60 opacity-85' : 'hover:-translate-y-0.5 hover:shadow-lg'
-        }`;
-
-        card.innerHTML = `
-          <div class="flex items-start gap-3.5 md:gap-4">
-            <div class="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-lavender-100/90 border border-lavender-200/80 flex items-center justify-center text-2xl md:text-3xl flex-shrink-0 shadow-xs">
-              ${vale.emoji}
-            </div>
-
-            <div class="flex-1 min-w-0 pr-1">
-              <div class="flex items-center justify-between gap-2 mb-1.5">
-                <h4 class="font-serif font-bold text-base sm:text-lg md:text-xl text-nightviolet-800 leading-snug">
-                  ${vale.titulo}
-                </h4>
-                <div id="stamp-container-${vale.id}">
-                  ${isRedeemed ? `<span class="stamp-redeemed md:text-xs">✓ Canjeado</span>` : ''}
-                </div>
-              </div>
-              <p class="text-xs md:text-sm text-softcharcoal-700/80 leading-relaxed mb-3.5">
-                ${vale.descripcion}
-              </p>
-
-              <button type="button"
-                      data-vale-id="${vale.id}"
-                      class="btn-canjear-vale inline-flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 rounded-xl text-xs md:text-sm font-bold transition-all duration-200 cursor-pointer ${
-                        isRedeemed
-                          ? 'bg-lavender-100 text-lavender-700 hover:bg-lavender-200'
-                          : 'bg-gradient-to-r from-lavender-600 via-pastellilac-500 to-lavender-500 text-white shadow-md hover:shadow-lavender-500/35 active:scale-95'
-                      }">
-                <span>${isRedeemed ? '📱 Ver mensaje enviado' : '🎁 Canjear vale'}</span>
-                <svg class="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                </svg>
-              </button>
-            </div>
-          </div>
-        `;
-
-        valesContainer.appendChild(card);
-      });
-
-      // Event listeners de canje
-      document.querySelectorAll('.btn-canjear-vale').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          const valeId = btn.getAttribute('data-vale-id');
-          canjearVale(valeId);
-        });
-      });
-    }
-
-    function canjearVale(valeId) {
-      const vale = CONFIG.vales.find(v => v.id === valeId);
-      if (!vale) return;
-
-      // Confeti festivo en paleta lila / lavanda / dorado suave
-      if (typeof confetti === 'function') {
-        confetti({
-          particleCount: 70,
-          spread: 60,
-          origin: { y: 0.7 },
-          colors: ['#9E77E7', '#CF9FF0', '#F8F5FC', '#DFBE8B', '#F5D6E7']
-        });
-      }
-
-      // Guardar en localStorage
+    try {
       const redeemedMap = JSON.parse(localStorage.getItem('vir_vales_canjeados') || '{}');
       redeemedMap[valeId] = true;
       localStorage.setItem('vir_vales_canjeados', JSON.stringify(redeemedMap));
+    } catch(e) {}
 
-      // Actualizar interfaz
-      renderVales();
+    renderValesState();
 
-      // Abrir WhatsApp con el mensaje codificado
-      const url = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(vale.whatsappMsg)}`;
-      window.open(url, '_blank');
+    const url = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(vale.whatsappMsg)}`;
+    window.open(url, '_blank');
+  }
+
+  // Lightbox functions
+  const lightboxModal = document.getElementById('lightbox-modal');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+  const lightboxClose = document.getElementById('lightbox-close');
+
+  function openLightbox(src, caption) {
+    lightboxImg.src = src;
+    lightboxCaption.innerText = caption;
+    lightboxModal.classList.remove('hidden');
+  }
+
+  function closeLightbox() {
+    lightboxModal.classList.add('hidden');
+  }
+
+  if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+  if (lightboxModal) {
+    lightboxModal.addEventListener('click', (e) => {
+      if (e.target === lightboxModal) closeLightbox();
+    });
+  }
+
+  // Inicialización interactiva cuando carga el documento
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Textos y cartas
+    document.getElementById('header-title').innerText = `Para ${CONFIG.cumpleanera}`;
+    document.getElementById('hero-date').innerHTML = `<span>✧</span><span>${CONFIG.fechaEspecial}</span><span>✧</span>`;
+    document.getElementById('hero-headline').innerText = CONFIG.fraseHero;
+    document.getElementById('hero-subtext').innerText = CONFIG.subfraseHero;
+
+    const cartaGermanEl = document.getElementById('carta-german-content');
+    const cartaCamiEl = document.getElementById('carta-cami-content');
+
+    const transcriptSegments = {
+      german: [
+        { start: 0.0, end: 4.8, text: "Hola Vir, en este día tan especial te quiero decir que te amo mucho..." },
+        { start: 4.8, end: 11.2, text: "...que sos una madre y una esposa espectacular..." },
+        { start: 11.2, end: 19.5, text: "...que te agradezco muchísimo por siempre estar a mi lado y al lado de Cami, y siempre apoyarnos..." },
+        { start: 19.5, end: 26.5, text: "...y que bueno, y que te deseamos de todo corazón que tengas un día y una vida espectacular. ❤️" }
+      ],
+      cami: [
+        { start: 0.0, end: 2.8, text: "Hola mami, ¡feliz cumple! 🎉" },
+        { start: 2.8, end: 5.5, text: "Que la pases muy lindo, ¡te quiero mucho! 💕" },
+        { start: 5.5, end: 8.5, text: "Que disfrutes los regalos... ¡chau! 🌸✨" }
+      ]
+    };
+
+    function renderTranscript(container, segments) {
+      if (!container) return;
+      container.innerHTML = `
+        <div class="space-y-1.5">
+          ${segments.map((s, idx) => `
+            <p id="${container.id}-sub-${idx}" class="p-1.5 rounded-lg text-xs sm:text-sm text-softcharcoal-800 transition-all duration-200">
+              “${s.text}”
+            </p>
+          `).join('')}
+        </div>
+        <div class="pt-2 border-t border-lavender-200/60 text-right">
+          <span class="text-[11px] text-lavender-600 font-hand text-base">Palabras de voz grabadas 🎙️❤️</span>
+        </div>
+      `;
     }
 
+    function highlightTranscript(container, segments, currentTime) {
+      segments.forEach((s, idx) => {
+        const el = document.getElementById(`${container.id}-sub-${idx}`);
+        if (!el) return;
+        if (currentTime >= s.start && currentTime <= s.end) {
+          el.classList.add('bg-lavender-200/90', 'text-nightviolet-950', 'font-bold', 'shadow-xs');
+        } else {
+          el.classList.remove('bg-lavender-200/90', 'text-nightviolet-950', 'font-bold', 'shadow-xs');
+        }
+      });
+    }
 
-    /* ====================================================================
-       INICIALIZACIÓN COMPLETA
-       ==================================================================== */
-    document.addEventListener('DOMContentLoaded', () => {
-      // 1. Textos iniciales desde CONFIG
-      document.getElementById('header-title').innerText = `Para ${CONFIG.cumpleanera}`;
-      document.getElementById('hero-date').innerHTML = `<span>✧</span><span>${CONFIG.fechaEspecial}</span><span>✧</span>`;
-      document.getElementById('hero-headline').innerText = CONFIG.fraseHero;
-      document.getElementById('hero-subtext').innerText = CONFIG.subfraseHero;
+    function resetTranscript(container, segments) {
+      segments.forEach((s, idx) => {
+        const el = document.getElementById(`${container.id}-sub-${idx}`);
+        if (el) el.classList.remove('bg-lavender-200/90', 'text-nightviolet-950', 'font-bold', 'shadow-xs');
+      });
+    }
 
-      // 2. Inyectar transcripción literal del audio
-      const cartaGermanEl = document.getElementById('carta-german-content');
-      const cartaCamiEl = document.getElementById('carta-cami-content');
+    renderTranscript(cartaGermanEl, transcriptSegments.german);
+    renderTranscript(cartaCamiEl, transcriptSegments.cami);
 
-      function renderTranscript(container, data) {
-        container.innerHTML = `
-          <div class="space-y-1.5">
-            ${data.subtitulos.map((s, idx) => `
-              <p id="${container.id}-sub-${idx}" class="p-1.5 rounded-lg text-xs sm:text-sm text-softcharcoal-800 transition-all duration-200">
-                “${s.text}”
-              </p>
-            `).join('')}
-          </div>
-          <div class="pt-2 border-t border-lavender-200/60 text-right">
-            <span class="text-[11px] text-lavender-600 font-hand text-base">Palabras de voz grabadas 🎙️❤️</span>
-          </div>
-        `;
-      }
-
-      function highlightTranscript(container, data, currentTime) {
-        data.subtitulos.forEach((s, idx) => {
-          const el = document.getElementById(`${container.id}-sub-${idx}`);
-          if (!el) return;
-          if (currentTime >= s.start && currentTime <= s.end) {
-            el.classList.add('bg-lavender-200/90', 'text-nightviolet-950', 'font-bold', 'shadow-xs');
-          } else {
-            el.classList.remove('bg-lavender-200/90', 'text-nightviolet-950', 'font-bold', 'shadow-xs');
-          }
-        });
-      }
-
-      function resetTranscriptHighlight(container, data) {
-        data.subtitulos.forEach((s, idx) => {
-          const el = document.getElementById(`${container.id}-sub-${idx}`);
-          if (el) el.classList.remove('bg-lavender-200/90', 'text-nightviolet-950', 'font-bold', 'shadow-xs');
-        });
-      }
-
-      renderTranscript(cartaGermanEl, CONFIG.cartas.german);
-      renderTranscript(cartaCamiEl, CONFIG.cartas.cami);
-
-      // Toggle transcripción Germán
-      const btnToggleCartaGerman = document.getElementById('btn-toggle-carta-german');
-      const chevronGerman = document.getElementById('chevron-carta-german');
+    // Toggles de cartas
+    const btnToggleCartaGerman = document.getElementById('btn-toggle-carta-german');
+    const chevronGerman = document.getElementById('chevron-carta-german');
+    if (btnToggleCartaGerman) {
       btnToggleCartaGerman.addEventListener('click', () => {
         const isHidden = cartaGermanEl.classList.toggle('hidden');
         chevronGerman.style.transform = isHidden ? 'rotate(0deg)' : 'rotate(180deg)';
       });
+    }
 
-      // Toggle transcripción Cami
-      const btnToggleCartaCami = document.getElementById('btn-toggle-carta-cami');
-      const chevronCami = document.getElementById('chevron-carta-cami');
+    const btnToggleCartaCami = document.getElementById('btn-toggle-carta-cami');
+    const chevronCami = document.getElementById('chevron-carta-cami');
+    if (btnToggleCartaCami) {
       btnToggleCartaCami.addEventListener('click', () => {
         const isHidden = cartaCamiEl.classList.toggle('hidden');
         chevronCami.style.transform = isHidden ? 'rotate(0deg)' : 'rotate(180deg)';
       });
+    }
 
-      // 3. Renderizar Galería de Recuerdos
-      const galeriaContainer = document.getElementById('galeria-recuerdos');
-      CONFIG.recuerdos.forEach((recuerdo, index) => {
-        const item = document.createElement('div');
-        item.className = 'relative bg-white rounded-2xl p-2.5 md:p-3.5 card-luxury border border-lavender-200 cursor-pointer flex flex-col group transition-all duration-300 hover:-translate-y-1 hover:shadow-xl';
-        const rotations = ['-rotate-1', 'rotate-1', '-rotate-1.5', 'rotate-1.5'];
-        item.classList.add(rotations[index % rotations.length]);
-
-        item.innerHTML = `
-          <div class="relative w-full aspect-square rounded-xl overflow-hidden bg-lavender-100/70 mb-2.5 md:mb-3">
-            <img src="${recuerdo.src}"
-                 alt="${recuerdo.titulo}"
-                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-106"
-                 onerror="handleImageFallback(this, '${recuerdo.titulo}', 'assets/recuerdo-${recuerdo.id}.jpg')" />
-          </div>
-          <p class="font-hand text-lg md:text-xl text-nightviolet-800 line-clamp-2 px-1 text-center font-medium leading-snug">
-            ${recuerdo.epigrafe}
-          </p>
-        `;
-
-        item.addEventListener('click', () => {
-          openLightbox(recuerdo.src, recuerdo.epigrafe);
-        });
-
-        galeriaContainer.appendChild(item);
-      });
-
-      // 4. Lightbox
-      const lightboxModal = document.getElementById('lightbox-modal');
-      const lightboxImg = document.getElementById('lightbox-img');
-      const lightboxCaption = document.getElementById('lightbox-caption');
-      const lightboxClose = document.getElementById('lightbox-close');
-      const lightboxImgContainer = lightboxImg.parentElement;
-
-      function openLightbox(src, caption) {
-        const prevFallback = lightboxImgContainer.querySelector('.lightbox-fallback');
-        if (prevFallback) prevFallback.remove();
-        lightboxImg.style.display = 'block';
-
-        lightboxImg.onerror = () => {
-          lightboxImg.style.display = 'none';
-          const fallbackDiv = document.createElement('div');
-          fallbackDiv.className = 'lightbox-fallback w-full py-16 flex flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-lavender-100 to-blushpastel-100 rounded-2xl';
-          fallbackDiv.innerHTML = `
-            <div class="w-16 h-16 rounded-2xl bg-white/90 shadow-md flex items-center justify-center text-3xl mb-3 border border-lavender-200">
-              📸
-            </div>
-            <p class="font-serif font-bold text-xl text-nightviolet-800">Recuerdo Familiar</p>
-            <p class="text-xs text-lavender-600 font-medium mt-1">Colocá tu foto en ${src}</p>
-          `;
-          lightboxImgContainer.appendChild(fallbackDiv);
-        };
-
-        lightboxImg.src = src;
-        lightboxCaption.innerText = caption;
-        lightboxModal.classList.remove('hidden');
-      }
-
-      function closeLightbox() {
-        lightboxModal.classList.add('hidden');
-      }
-
-      lightboxClose.addEventListener('click', closeLightbox);
-      lightboxModal.addEventListener('click', (e) => {
-        if (e.target === lightboxModal) closeLightbox();
-      });
-
-      // 5. Configurar Reproductores de Audio con Transcripción Sincronizada
-      let playerGerman, playerCami;
-
-      playerGerman = setupAudioPlayer({
-        audioSrc: ['assets/audio-german.ogg', 'assets/audio-german.mp3'],
-        btnPlay: document.getElementById('btn-play-german'),
-        iconPlay: document.getElementById('icon-play-german'),
-        iconPause: document.getElementById('icon-pause-german'),
-        timeCurrent: document.getElementById('time-current-german'),
-        timeTotal: document.getElementById('time-total-german'),
-        progressBar: document.getElementById('progress-bar-german'),
-        progressContainer: document.getElementById('progress-container-german'),
-        wavesContainer: document.getElementById('waves-german'),
-        playerCard: document.getElementById('player-card-german'),
-        fallbackNotice: document.getElementById('fallback-notice-german'),
-        otherPlayerGetter: () => playerCami,
-        onPlay: () => {
+    // 2. Audio players
+    let playerGerman, playerCami;
+    playerGerman = setupAudioPlayer({
+      audioSrc: ['assets/audio-german.ogg', 'assets/audio-german.mp3'],
+      btnPlay: document.getElementById('btn-play-german'),
+      iconPlay: document.getElementById('icon-play-german'),
+      iconPause: document.getElementById('icon-pause-german'),
+      timeCurrent: document.getElementById('time-current-german'),
+      timeTotal: document.getElementById('time-total-german'),
+      progressBar: document.getElementById('progress-bar-german'),
+      progressContainer: document.getElementById('progress-container-german'),
+      wavesContainer: document.getElementById('waves-german'),
+      playerCard: document.getElementById('player-card-german'),
+      otherPlayerGetter: () => playerCami,
+      onPlay: () => {
+        if (cartaGermanEl) {
           cartaGermanEl.classList.remove('hidden');
-          chevronGerman.style.transform = 'rotate(180deg)';
-        },
-        onTimeUpdate: (t) => highlightTranscript(cartaGermanEl, CONFIG.cartas.german, t),
-        onEnded: () => resetTranscriptHighlight(cartaGermanEl, CONFIG.cartas.german)
-      });
+          const ch = document.getElementById('chevron-carta-german');
+          if (ch) ch.style.transform = 'rotate(180deg)';
+        }
+      },
+      onTimeUpdate: (t) => highlightTranscript(cartaGermanEl, transcriptSegments.german, t),
+      onEnded: () => resetTranscript(cartaGermanEl, transcriptSegments.german)
+    });
 
-      playerCami = setupAudioPlayer({
-        audioSrc: ['assets/audio-cami.ogg', 'assets/audio-cami.mp3'],
-        btnPlay: document.getElementById('btn-play-cami'),
-        iconPlay: document.getElementById('icon-play-cami'),
-        iconPause: document.getElementById('icon-pause-cami'),
-        timeCurrent: document.getElementById('time-current-cami'),
-        timeTotal: document.getElementById('time-total-cami'),
-        progressBar: document.getElementById('progress-bar-cami'),
-        progressContainer: document.getElementById('progress-container-cami'),
-        wavesContainer: document.getElementById('waves-cami'),
-        playerCard: document.getElementById('player-card-cami'),
-        fallbackNotice: document.getElementById('fallback-notice-cami'),
-        otherPlayerGetter: () => playerGerman,
-        onPlay: () => {
+    playerCami = setupAudioPlayer({
+      audioSrc: ['assets/audio-cami.ogg', 'assets/audio-cami.mp3'],
+      btnPlay: document.getElementById('btn-play-cami'),
+      iconPlay: document.getElementById('icon-play-cami'),
+      iconPause: document.getElementById('icon-pause-cami'),
+      timeCurrent: document.getElementById('time-current-cami'),
+      timeTotal: document.getElementById('time-total-cami'),
+      progressBar: document.getElementById('progress-bar-cami'),
+      progressContainer: document.getElementById('progress-container-cami'),
+      wavesContainer: document.getElementById('waves-cami'),
+      playerCard: document.getElementById('player-card-cami'),
+      otherPlayerGetter: () => playerGerman,
+      onPlay: () => {
+        if (cartaCamiEl) {
           cartaCamiEl.classList.remove('hidden');
-          chevronCami.style.transform = 'rotate(180deg)';
-        },
-        onTimeUpdate: (t) => highlightTranscript(cartaCamiEl, CONFIG.cartas.cami, t),
-        onEnded: () => resetTranscriptHighlight(cartaCamiEl, CONFIG.cartas.cami)
-      });
-
-      // 6. Renderizar Vales
-      renderVales();
-
-      // Botón para resetear vales
-      document.getElementById('btn-reset-vales').addEventListener('click', () => {
-        localStorage.removeItem('vir_vales_canjeados');
-        renderVales();
-      });
-
-      // 7. Apertura de la tarjeta (Bienvenida -> Contenido Principal con Confeti)
-      const welcomeScreen = document.getElementById('welcome-screen');
-      const mainContent = document.getElementById('main-content');
-      const btnOpenGift = document.getElementById('btn-open-gift');
-
-      btnOpenGift.addEventListener('click', () => {
-        // Disparar confeti en paleta lila y pasteles delicados
-        if (typeof confetti === 'function') {
-          confetti({
-            particleCount: 120,
-            spread: 80,
-            origin: { y: 0.6 },
-            colors: ['#9E77E7', '#CF9FF0', '#D5C4F6', '#DFBE8B', '#F5D6E7', '#F8F5FC']
-          });
-          setTimeout(() => {
-            confetti({
-              particleCount: 80,
-              angle: 60,
-              spread: 55,
-              origin: { x: 0 },
-              colors: ['#9E77E7', '#DFBE8B']
-            });
-            confetti({
-              particleCount: 80,
-              angle: 120,
-              spread: 55,
-              origin: { x: 1 },
-              colors: ['#CF9FF0', '#E8DEFA']
-            });
-          }, 350);
+          const ch = document.getElementById('chevron-carta-cami');
+          if (ch) ch.style.transform = 'rotate(180deg)';
         }
+      },
+      onTimeUpdate: (t) => highlightTranscript(cartaCamiEl, transcriptSegments.cami, t),
+      onEnded: () => resetTranscript(cartaCamiEl, transcriptSegments.cami)
+    });
 
-        // Transición de salida
-        welcomeScreen.classList.add('opacity-0', 'pointer-events-none', 'scale-105');
-        setTimeout(() => {
-          welcomeScreen.style.display = 'none';
-          mainContent.classList.remove('opacity-0');
-        }, 750);
-      });
-
-      // Botón de confeti en cabecera
-      document.getElementById('btn-confetti-header').addEventListener('click', () => {
-        if (typeof confetti === 'function') {
-          confetti({
-            particleCount: 80,
-            spread: 70,
-            origin: { y: 0.2 },
-            colors: ['#9E77E7', '#CF9FF0', '#DFBE8B', '#E8DEFA']
-          });
-        }
+    // 3. Vales setup
+    renderValesState();
+    document.querySelectorAll('.btn-canjear-vale').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const valeId = btn.getAttribute('data-vale-id');
+        canjearVale(valeId);
       });
     });
-  </script>
+
+    const btnResetVales = document.getElementById('btn-reset-vales');
+    if (btnResetVales) {
+      btnResetVales.addEventListener('click', () => {
+        try { localStorage.removeItem('vir_vales_canjeados'); } catch(e) {}
+        renderValesState();
+      });
+    }
+
+    // 4. EVENTOS DE APERTURA EN DOS PASOS (Paso 1 -> Paso 2)
+    const btnOpenGiftMain = document.getElementById('btn-open-gift-main');
+    if (btnOpenGiftMain) {
+      btnOpenGiftMain.addEventListener('click', openGiftRevealCard);
+    }
+
+    const heroGiftBox = document.getElementById('hero-gift-box');
+    if (heroGiftBox) {
+      heroGiftBox.addEventListener('click', openGiftRevealCard);
+      heroGiftBox.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openGiftRevealCard();
+        }
+      });
+    }
+
+    // Botón para volver a ver la sorpresa
+    const btnReplay = document.getElementById('btn-replay-welcome');
+    if (btnReplay) {
+      btnReplay.addEventListener('click', replayWelcomeCover);
+    }
+
+    // Botón de confeti en cabecera
+    const btnConfettiHeader = document.getElementById('btn-confetti-header');
+    if (btnConfettiHeader) {
+      btnConfettiHeader.addEventListener('click', () => {
+        triggerCelebrationConfetti();
+      });
+    }
+  });
+</script>
 </body></html>
