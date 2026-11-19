@@ -624,12 +624,14 @@
 <p class="text-xs sm:text-sm text-softcharcoal-700/80 leading-relaxed mb-3">
               Preparado con todo el amor, café con espuma caliente, tostadas, frutas y lo que más te guste.
             </p>
-<button class="btn-canjear-vale inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer bg-gradient-to-r from-lavender-600 via-pastellilac-500 to-lavender-500 text-white shadow-md hover:shadow-lavender-500/35 active:scale-95" data-vale-id="desayuno" type="button">
+<div id="btn-container-desayuno">
+<button class="btn-canjear-vale inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer bg-gradient-to-r from-lavender-600 via-pastellilac-500 to-lavender-500 text-white shadow-md hover:shadow-lavender-500/35 active:scale-95" onclick="canjearVale('desayuno')" type="button">
 <span>🎁 Canjear vale</span>
 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
 <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
 </svg>
 </button>
+</div>
 </div>
 </div>
 </div>
@@ -649,12 +651,14 @@
 <p class="text-xs sm:text-sm text-softcharcoal-700/80 leading-relaxed mb-3">
               El restaurante o comida que tengas ganas de disfrutar, invitación completa y noche especial.
             </p>
-<button class="btn-canjear-vale inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer bg-gradient-to-r from-lavender-600 via-pastellilac-500 to-lavender-500 text-white shadow-md hover:shadow-lavender-500/35 active:scale-95" data-vale-id="cena" type="button">
+<div id="btn-container-cena">
+<button class="btn-canjear-vale inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer bg-gradient-to-r from-lavender-600 via-pastellilac-500 to-lavender-500 text-white shadow-md hover:shadow-lavender-500/35 active:scale-95" onclick="canjearVale('cena')" type="button">
 <span>🎁 Canjear vale</span>
 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
 <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
 </svg>
 </button>
+</div>
 </div>
 </div>
 </div>
@@ -674,12 +678,14 @@
 <p class="text-xs sm:text-sm text-softcharcoal-700/80 leading-relaxed mb-3">
               Pochoclos, mantita suave, masajes y tu maratón de películas o serie favorita sin interrupciones.
             </p>
-<button class="btn-canjear-vale inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer bg-gradient-to-r from-lavender-600 via-pastellilac-500 to-lavender-500 text-white shadow-md hover:shadow-lavender-500/35 active:scale-95" data-vale-id="mimos" type="button">
+<div id="btn-container-mimos">
+<button class="btn-canjear-vale inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer bg-gradient-to-r from-lavender-600 via-pastellilac-500 to-lavender-500 text-white shadow-md hover:shadow-lavender-500/35 active:scale-95" onclick="canjearVale('mimos')" type="button">
 <span>🎁 Canjear vale</span>
 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
 <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
 </svg>
 </button>
+</div>
 </div>
 </div>
 </div>
@@ -699,7 +705,8 @@
 <p class="text-xs sm:text-sm text-softcharcoal-700/80 leading-relaxed mb-3">
               Válido por cualquier deseo, escapada o capricho que se te ocurra, ¡sin peros ni objeciones!
             </p>
-<button class="btn-canjear-vale inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer bg-gradient-to-r from-lavender-600 via-pastellilac-500 to-lavender-500 text-white shadow-md hover:shadow-lavender-500/35 active:scale-95" data-vale-id="comodin" type="button">
+<div id="btn-container-comodin">
+<button class="btn-canjear-vale inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer bg-gradient-to-r from-lavender-600 via-pastellilac-500 to-lavender-500 text-white shadow-md hover:shadow-lavender-500/35 active:scale-95" onclick="canjearVale('comodin')" type="button">
 <span>🎁 Canjear vale</span>
 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
 <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
@@ -709,10 +716,11 @@
 </div>
 </div>
 </div>
-<div class="text-center mt-5">
-<button class="text-[11px] text-softcharcoal-700/60 hover:text-nightviolet-800 underline transition-colors cursor-pointer" id="btn-reset-vales" type="button">
-        Restablecer estado de los vales (modo prueba)
-      </button>
+</div>
+<div class="text-center mt-6">
+<button class="inline-flex items-center gap-2 text-xs font-semibold text-lavender-700 hover:text-nightviolet-800 bg-lavender-100/90 hover:bg-lavender-200 border border-lavender-300/80 px-4 py-2 rounded-full transition-all duration-200 shadow-xs cursor-pointer active:scale-95" id="btn-reset-vales" onclick="resetearTodosLosVales()" type="button">
+<span>🔄</span> Restablecer todos los vales a disponibles
+</button>
 </div>
 </section>
 <!-- ====================================================================
@@ -1163,10 +1171,14 @@
       const isRedeemed = !!redeemedMap[vale.id];
       const stampContainer = document.getElementById(`stamp-container-${vale.id}`);
       const card = document.getElementById(`vale-card-${vale.id}`);
-      const btn = card ? card.querySelector('.btn-canjear-vale') : null;
+      const btnContainer = document.getElementById(`btn-container-${vale.id}`);
 
       if (stampContainer) {
-        stampContainer.innerHTML = isRedeemed ? `<span class="stamp-redeemed">✓ Canjeado</span>` : '';
+        if (isRedeemed) {
+          stampContainer.innerHTML = `<button type="button" onclick="destildarVale('${vale.id}')" title="Hacer clic para destildar y volver a habilitar este vale" class="stamp-redeemed hover:opacity-80 transition-all cursor-pointer">✓ Canjeado <span class="text-[9px] opacity-75 font-normal ml-0.5">(destildar)</span></button>`;
+        } else {
+          stampContainer.innerHTML = '';
+        }
       }
       if (card) {
         if (isRedeemed) {
@@ -1175,13 +1187,27 @@
           card.classList.remove('bg-lavender-50/60', 'opacity-90');
         }
       }
-      if (btn) {
+      if (btnContainer) {
         if (isRedeemed) {
-          btn.innerHTML = `<span>📱 Mensaje enviado</span><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>`;
-          btn.className = 'btn-canjear-vale inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer bg-lavender-100 text-lavender-700 hover:bg-lavender-200';
+          btnContainer.innerHTML = `
+            <div class="flex items-center flex-wrap gap-2 pt-1">
+              <span class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-lavender-100/90 text-lavender-800 border border-lavender-200/90 shadow-2xs">
+                <span>📱</span> Mensaje enviado ✓
+              </span>
+              <button type="button" onclick="destildarVale('${vale.id}')" class="inline-flex items-center gap-1 px-3 py-2 rounded-xl text-xs font-semibold text-softcharcoal-700 hover:text-nightviolet-800 bg-white/90 hover:bg-lavender-100 border border-lavender-200/90 shadow-2xs transition-all duration-200 cursor-pointer active:scale-95" title="Volver a poner disponible este vale">
+                <span>↩</span> Destildar
+              </button>
+            </div>
+          `;
         } else {
-          btn.innerHTML = `<span>🎁 Canjear vale</span><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>`;
-          btn.className = 'btn-canjear-vale inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer bg-gradient-to-r from-lavender-600 via-pastellilac-500 to-lavender-500 text-white shadow-md hover:shadow-lavender-500/35 active:scale-95';
+          btnContainer.innerHTML = `
+            <button class="btn-canjear-vale inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer bg-gradient-to-r from-lavender-600 via-pastellilac-500 to-lavender-500 text-white shadow-md hover:shadow-lavender-500/35 active:scale-95" onclick="canjearVale('${vale.id}')" type="button">
+              <span>🎁 Canjear vale</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+            </button>
+          `;
         }
       }
     });
@@ -1203,6 +1229,22 @@
 
     const url = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(vale.whatsappMsg)}`;
     window.open(url, '_blank');
+  }
+
+  function destildarVale(valeId) {
+    try {
+      const redeemedMap = JSON.parse(localStorage.getItem('vir_vales_canjeados') || '{}');
+      delete redeemedMap[valeId];
+      localStorage.setItem('vir_vales_canjeados', JSON.stringify(redeemedMap));
+    } catch(e) {}
+    renderValesState();
+  }
+
+  function resetearTodosLosVales() {
+    try {
+      localStorage.removeItem('vir_vales_canjeados');
+    } catch(e) {}
+    renderValesState();
   }
 
   // Lightbox functions
@@ -1370,19 +1412,9 @@
 
     // 3. Vales setup
     renderValesState();
-    document.querySelectorAll('.btn-canjear-vale').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const valeId = btn.getAttribute('data-vale-id');
-        canjearVale(valeId);
-      });
-    });
-
     const btnResetVales = document.getElementById('btn-reset-vales');
     if (btnResetVales) {
-      btnResetVales.addEventListener('click', () => {
-        try { localStorage.removeItem('vir_vales_canjeados'); } catch(e) {}
-        renderValesState();
-      });
+      btnResetVales.addEventListener('click', resetearTodosLosVales);
     }
 
     // 4. EVENTOS DE APERTURA EN DOS PASOS (Paso 1 -> Paso 2)
