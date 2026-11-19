@@ -1,0 +1,48 @@
+====================================================================
+GUÍA DE ARCHIVOS MULTIMEDIA - TARJETA DE CUMPLEAÑOS DE VIR
+====================================================================
+
+Hola Germán!
+Para que la tarjeta se vea con las fotos y audios reales de ustedes,
+simplemente coloca los siguientes archivos dentro de esta carpeta (assets/)
+respetando exactamente estos nombres y formatos:
+
+FOTOS:
+--------------------------------------------------------------------
+1. portada.jpg
+   - La foto principal de portada (Vir sola o con ustedes).
+   - Formato recomendado: JPG o PNG vertical o cuadrado (resolución recomendada: 800x1000px o similar).
+
+2. avatar-german.jpg
+   - Tu foto de perfil para la tarjeta del audio.
+   - Formato recomendado: JPG o PNG cuadrada (resolución recomendada: 400x400px).
+
+3. avatar-cami.jpg
+   - Foto de perfil de Cami para su tarjeta del audio.
+   - Formato recomendado: JPG o PNG cuadrada (resolución recomendada: 400x400px).
+
+4. recuerdo-1.jpg
+5. recuerdo-2.jpg
+6. recuerdo-3.jpg
+7. recuerdo-4.jpg
+   - Las 4 fotos para la galería de recuerdos familiares/en pareja.
+   - Formato recomendado: JPG o PNG (vertical u horizontal).
+
+AUDIOS DE VOZ:
+--------------------------------------------------------------------
+8. audio-german.mp3
+   - Tu mensaje de voz grabado con el celular.
+   - Formato recomendado: MP3 (o M4A renombrado a .mp3 o convertido).
+
+9. audio-cami.mp3
+   - El mensaje de voz de Cami.
+   - Formato recomendado: MP3.
+
+NOTA SOBRE FALLBACKS:
+- Si todavía no pusiste alguna foto, la web detectará automáticamente
+  que el archivo no está y mostrará un diseño elegante con iniciales e ícono
+  en lugar de una imagen rota.
+- En `index.html`, en la parte superior del `<script>`, podés cambiar los
+  textos de las cartas, el número de WhatsApp para los vales y los títulos
+  en el bloque `CONFIG`.
+====================================================================
